@@ -1,5 +1,6 @@
 Micado.Collections.Cart = Micado.Collections.Entities.extend({
-    model: Micado.Models.Item,              
+    model: Micado.Models.Item,  
+    localStorage: new Backbone.LocalStorage('Cart'),            
 
     initialize: function (models, options) {
         this.listenTo(this, 'add', this.checkPricing);

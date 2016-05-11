@@ -20,9 +20,7 @@ window.Micado = {
         Micado.Items = new Micado.Collections.Items([], {
             url: endpoints.itemsUrl
         });
-        Micado.Cart = new Micado.Collections.Cart([], {
-            localStorage: 'Micado.Cart'
-        });
+        Micado.Cart = new Micado.Collections.Cart();
 
         //All prices assumed to be in pound sterling
         Micado.Currency = '£';

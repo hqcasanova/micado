@@ -28,11 +28,11 @@ Micado.Views.HeaderView = Marionette.View.extend({
         //Appends promise to the queue
         this.allPromises = this.allPromises.then(promise);
 
-        //Stops feedback and resets queue
-        this.allPromises.done(function () {
+        //Stops feedback and resets queue even if there's been an error
+        this.allPromises.always(function () {
             that.logoEl.classList.remove('logo--loading');
             that.allPromises = $.Deferred().resolve();                    
-        })
+        });
     },
 
     updateCounter: function (collection) {
