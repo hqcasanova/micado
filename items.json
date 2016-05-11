@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Fruit Tea",
+    "code": "FR1",
+    "image": "http://www.paradisefruits.co.uk/fileadmin/user_upload/Tea.jpg",
+    "price": 3.11,
+    "discountCode": "off1"  
+  },
+  {
+    "name": "Strawberries",
+    "code": "SR1",
+    "image": "https://onceamonth4.files.wordpress.com/2012/06/strawberries1.jpg",
+    "price": 5.00,
+    "discountCode" "half3":
+  },
+  {
+    "name": "Coffee",
+    "code": "CF1",
+    "image": "https://www.deafcancoffee.com/images/portfolio/coffee.jpg",
+    "price": 11.23,
+    "discountCode": ""
+  }
+]

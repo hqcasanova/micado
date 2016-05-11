@@ -1,0 +1,16 @@
+<script type="text/template" id="item-card-template">
+    <li class="item">
+        <img alt="<%- name %>" src="<%- image %>" />
+        <span class="item__name"><%- name %></span>
+        <span class="item__price"><%- Micado.Currency %><%- price %></span>
+        <button class="item__action"><%- actionName %></button>
+    </li>
+</script>
+<script type="text/template" id="items-template">
+    <h1>Products</h1>
+    <ul class="list"></ul>
+</script>
+<script type="text/template" id="cart-template">
+    <h1>Total: <% Micado.Currency + ' ' + total() %></h1>
+    <ul class="list"></ul>
+</script>
