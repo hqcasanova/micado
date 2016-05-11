@@ -1,4 +1,4 @@
-Micado.Model.Item = Backbone.Model.extend({
+Micado.Models.Item = Backbone.Model.extend({
     defaults: function () {
         return {
             name: '',

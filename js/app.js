@@ -17,11 +17,10 @@ window.Micado = {
         var backboneSync;
         var headerView;
 
-        Micado.Items = new Micado.Collection.Items([], {
-            url: endpoints.itemsUrl,
-            feedbackView: headerView
+        Micado.Items = new Micado.Collections.Items([], {
+            url: endpoints.itemsUrl
         });
-        Micado.Cart = new Micado.Collection.Cart([], {
+        Micado.Cart = new Micado.Collections.Cart([], {
             localStorage: 'Micado.Cart'
         });
 
@@ -42,7 +41,8 @@ window.Micado = {
 
         //Caches all templates and shows item list
         function build (templatesHTML) {
-            var layoutView, views;
+            var layoutView;
+            var views;
 
             document.body.insertAdjacentHTML('beforeend', templatesHTML);
             scripts = Array.prototype.slice.call(document.getElementsByTagName('script'));
@@ -54,26 +54,30 @@ window.Micado = {
 
             views = {
                 items: new Marionette.CompositeView({
-                    collection: new Micado.Items,
+                    collection: Micado.Items,
                     template: '#items-template',
                     childView: Micado.Views.ItemCard,
-                    childViewOptions: {templateHelpers: {actionName: 'Add to cart'}},
                     childViewContainer: '.list',
-                    action: function (model) {
-                        Micado.Cart.create(model.toJSON());
-                        this.el.classList.add('added');
+                    childViewOptions: {
+                        templateHelpers: {actionName: 'Add to cart'},
+                        action: function (model) {
+                            Micado.Cart.create(model.toJSON());
+                            this.el.classList.add('added');
+                        }
                     }
                 }), 
 
                 cart: new Marionette.CompositeView({
-                    collection: new Micado.Cart,
+                    collection: Micado.Cart,
                     template: '#cart-template',
                     childView: Micado.Views.ItemCard,
-                    childViewOptions: {templateHelpers: {actionName: 'Remove from cart'}},
                     childViewContainer: '.list',
-                    action: function (model) {
-                        Micado.Cart.destroy(model);
-                        this.el.classList.toggle('added', Micado.Cart.contains(model));
+                    childViewOptions: {
+                        templateHelpers: {actionName: 'Remove from cart'},
+                        action: function (model) {
+                            Micado.Cart.destroy(model);
+                            this.el.classList.toggle('added', Micado.Cart.contains(model));
+                        }
                     }
                 }), 
             };

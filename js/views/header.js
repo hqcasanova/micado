@@ -17,15 +17,17 @@ Micado.Views.HeaderView = Marionette.View.extend({
     },
 
     showFeedback: function (promise) {
+        var that = this;
+
         this.logoEl.classList.add('logo--loading');        
 
         //Appends promise to the queue
         this.allPromises = this.allPromises.then(promise);
 
         //Stops feedback and resets queue
-        this.allPromises.done({
-            this.logoEl.classList.remove('logo--loading');
-            this.allPromises.resolve();                    
+        this.allPromises.done(function () {
+            that.logoEl.classList.remove('logo--loading');
+            that.allPromises.resolve();                    
         })
     },
 

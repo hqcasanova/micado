@@ -1,4 +1,4 @@
-Micado.Collections.Cart = Backbone.Entities.extend({
+Micado.Collections.Cart = Micado.Collections.Entities.extend({
     model: Micado.Models.Item,              
 
     initialize: function (models, options) {
