@@ -1,10 +1,14 @@
 Micado.Views.HeaderView = Marionette.View.extend({
-    collections: null,              //cart
-    allPromises: $.Deferred(),      //queue of promises
+    collection: null,         //cart
+    allPromises: null,        //queue of promises
 
     initialize: function (options) {
+
+        //Sets up promise queue
         if (options.initPromises) {
             this.allPromises = $.when.apply($, options.initPromises);
+        } else {
+            this.allPromises = $.Deferred().resolve();
         }
 
         //Assumes the header's markup is critical and, therefore, already in place
@@ -27,7 +31,7 @@ Micado.Views.HeaderView = Marionette.View.extend({
         //Stops feedback and resets queue
         this.allPromises.done(function () {
             that.logoEl.classList.remove('logo--loading');
-            that.allPromises.resolve();                    
+            that.allPromises = $.Deferred().resolve();                    
         })
     },
 

@@ -36,7 +36,10 @@ window.Micado = {
         //Displays transaction feedback for every Backbone request
         backboneSync = Backbone.sync 
         Backbone.sync = function (method, model, options) {
-            headerView.showFeedback(backboneSync(method, model, options));
+            var synced = backboneSync(method, model, options);
+            
+            headerView.showFeedback(synced);
+            return synced;
         };
 
         //Caches all templates and shows item list
