@@ -55,42 +55,46 @@ window.Micado = {
         };
 
         function build (templatesHTML) {
+            var itemsView;
+            var cartView;
 
-            //Caches external templates
+            //Caches non-critical templates retrieved from the server
             document.body.insertAdjacentHTML('beforeend', templatesHTML);
             cacheTemplates();
 
-            //Defines app views and starts 'routing'
-            _.extend(layoutView.regionViews, {
-                items: new Marionette.CompositeView({
-                    collection: Micado.Items,
-                    template: '#items-template',
-                    childView: Micado.Views.Item,
-                    childViewContainer: '.list',
-                    childViewOptions: {
-                        templateHelpers: {actionName: 'Add'},
-                        action: function (model) {
-                            Micado.Cart.create(model.toJSON());
-                            this.el.classList.add('added');
-                        }
+            //Instantiates views for every 'route'
+            itemsView = new Marionette.CompositeView({
+                collection: Micado.Items,
+                template: '#items-template',
+                childView: Micado.Views.Item,
+                childViewContainer: '.list',
+                childViewOptions: {
+                    templateHelpers: {actionName: 'Add'},
+                    onAction: function (event) {
+                        Micado.Cart.create(this.model.toJSON());
+                        this.el.classList.add('added');
                     }
-                }), 
-
-                cart: new Micado.Views.Cart({
-                    collection: Micado.Cart,
-                    template: '#cart-template',
-                    childView: Micado.Views.Item,
-                    childViewContainer: '.list',
-                    childViewOptions: {
-                        templateHelpers: {actionName: 'Remove'},
-                        action: function (model) {
-                            Micado.Cart.destroy(model);
-                            this.el.classList.toggle('added', Micado.Cart.contains(model));
-                        }
-                    }
-                }) 
+                }
             });
-            layoutView.start();           
+            cartView = new Micado.Views.Cart({
+                collection: Micado.Cart,
+                template: '#cart-template',
+                childView: Micado.Views.Item,
+                childViewContainer: '.list',
+                childViewOptions: {
+                    templateHelpers: {actionName: 'Remove'},
+                    onAction: function (event) {
+                        Micado.Cart.destroy(this.model);
+                        itemsView.el.classList.toggle('added', Micado.Cart.contains(this.model));
+                    }
+                }
+            });
+
+            //Starts 'routing'
+            layoutView.start({
+                items: itemsView, 
+                cart: cartView  
+            });           
         } 
 
         function cacheTemplates () {

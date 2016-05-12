@@ -1,16 +1,16 @@
 Micado.Views.Item = Marionette.ItemView.extend({
     template: '#item-card-template',
-    actionHandler: null,
+    onAction: null,
 
     events: {
-        'click .item__action' : 'doAction'
+        'click .item__action' : 'onClick'
     },
 
     initialize: function (options) {
-        this.actionHandler = options.action.bind(this);
+        this.onAction = options.onAction.bind(this);
     },
 
-    doAction: function (event) {
-        this.actionHandler();
+    onClick: function (event) {
+        this.onAction(event);
     }
 });

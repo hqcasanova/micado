@@ -25,7 +25,8 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
     },
 
     //Renders first view according to existing hash or lack of it
-    start: function () {
+    start: function (routes) {
+        _.extend(this.regionViews, routes);
         if (!location.hash) {           //default 'route'
             location.hash = this.defaultViewName;
         } else {                        //'route' already provided
