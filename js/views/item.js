@@ -3,7 +3,7 @@ Micado.Views.Item = Marionette.ItemView.extend({
     actionHandler: null,
 
     events: {
-        '.item__action' : 'doAction'
+        'click .item__action' : 'doAction'
     },
 
     initialize: function (options) {

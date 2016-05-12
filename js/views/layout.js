@@ -47,10 +47,15 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
         viewToShow = this.regionViews[viewName];
 
         //Retrieves first whatever collection the view has associated if it hasn't already
-        if (viewToShow.collection && !viewToShow.collection.isFetched) {
-            viewToShow.collection.fetch().done(function () {
+        //The current view is not destroyed to take advantage of local state
+        if (viewToShow.collection) {
+            if (viewToShow.collection.isFetched) {
                 region.show(viewToShow, {preventDestroy: true});
-            });
+            } else {
+                viewToShow.collection.fetch().done(function () {
+                    region.show(viewToShow, {preventDestroy: true});
+                });
+            }
 
         //No collection => just shows the view
         } else {

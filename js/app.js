@@ -68,7 +68,7 @@ window.Micado = {
                     childView: Micado.Views.Item,
                     childViewContainer: '.list',
                     childViewOptions: {
-                        templateHelpers: {actionName: 'Add to cart'},
+                        templateHelpers: {actionName: 'Add'},
                         action: function (model) {
                             Micado.Cart.create(model.toJSON());
                             this.el.classList.add('added');
@@ -82,7 +82,7 @@ window.Micado = {
                     childView: Micado.Views.Item,
                     childViewContainer: '.list',
                     childViewOptions: {
-                        templateHelpers: {actionName: 'Remove from cart'},
+                        templateHelpers: {actionName: 'Remove'},
                         action: function (model) {
                             Micado.Cart.destroy(model);
                             this.el.classList.toggle('added', Micado.Cart.contains(model));

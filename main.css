@@ -1,0 +1,27 @@
+ul, li, div {
+    margin: 0;
+    padding: 0;
+}
+ul {
+    list-style: none;
+}
+.item {
+    margin: 1em;
+    border: 1px solid gray;
+}
+.item__image {
+    width: 100%;
+    height: auto;
+}
+.item__name {
+    float: left;
+}
+.item__price {
+    float: right;
+}
+.item__action {
+    background: black;
+    color: white;
+    padding: .5em;
+    cursor: pointer;
+}

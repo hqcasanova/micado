@@ -1,9 +1,9 @@
 <script type="text/template" id="item-card-template">
     <li class="item">
-        <img alt="<%- name %>" src="<%- image %>" />
+        <img class="item__image" alt="<%- name %>" src="<%- image %>" />
         <span class="item__name"><%- name %></span>
         <span class="item__price"><%- Micado.Currency %><%- price %></span>
-        <button class="item__action"><%- actionName %></button>
+        <a class="item__action" href="#"><%- actionName %></a>
     </li>
 </script>
 <script type="text/template" id="items-template">

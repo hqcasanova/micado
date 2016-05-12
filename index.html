@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Micado - Your online supermarket</title>
     <style>
-        html, body, div, header, main, footer, h1, p {
+        html, body, header, main, footer, h1, p {
             margin: 0;
             padding: 0;
         }
@@ -19,6 +19,10 @@
             font-size: 100%;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+        a {
+            text-decoration: none;
+            color: black;
         }
         .header {
             position: absolute;
@@ -100,7 +104,9 @@
 
     <!-- Critical markup -->
     <header class="header">
-        <a class="logo logo--loading"><img alt="" src="logo.png" width="256px" height="256px"/></a>
+        <a class="logo logo--loading" href="/" title="Homepage">
+            <img alt="" src="logo.png" width="256px" height="256px"/>
+        </a>
         <h1 class="brand">
             Micado
         </h1>
