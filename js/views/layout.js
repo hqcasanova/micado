@@ -7,7 +7,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
         try {
             this.regionViews = options.regionViews || {};
             this.defaultViewName = options.defaultViewName;
-            this.regionViews.error = new Marionette.ItemView({template: options.errorTemplate});
+            this.regionViews.error = Marionette.ItemView.extend({template: options.errorTemplate});
         } catch (e) {
             
             //At least the error template is available => shows it
@@ -43,26 +43,19 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
 
         if (viewName) {
 
-            //Renders the error view if view not found in 'route-to-view' map
+            //Renders the error view if no matches from the 'route-to-view' map
             if (!this.regionViews[viewName]) {
                 viewName = 'error';   
             }
-            viewToShow = this.regionViews[viewName];
+            viewToShow = new this.regionViews[viewName]();
 
             //Retrieves first whatever collection the view has associated if it hasn't already
-            //The current view is not destroyed to take advantage of local state
-            if (viewToShow.collection) {
-                if (viewToShow.collection.isFetched) {
-                    region.show(viewToShow, {preventDestroy: true});
-                } else {
-                    viewToShow.collection.fetch().done(function () {
-                        region.show(viewToShow, {preventDestroy: true});
-                    });
-                }
-
-            //No collection => just shows the view
-            } else {
+            if (!viewToShow.collection || viewToShow.collection.isFetched) {
                 region.show(viewToShow);
+            } else {
+                viewToShow.collection.fetch().done(function () {
+                    region.show(viewToShow);
+                });
             }
         }
     }

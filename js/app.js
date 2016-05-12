@@ -63,20 +63,23 @@ window.Micado = {
             cacheTemplates();
 
             //Instantiates views for every 'route'
-            itemsView = new Marionette.CompositeView({
+            itemsView = Marionette.CompositeView.extend({
                 collection: Micado.Items,
                 template: '#items-template',
                 childView: Micado.Views.Item,
                 childViewContainer: '.list',
                 childViewOptions: {
-                    templateHelpers: {actionName: 'Add'},
+                    templateHelpers: {
+                        addedClass: function () {Micado.Cart.contains(this.model)},
+                        actionName: 'Add'
+                    },
                     onAction: function (event) {
                         Micado.Cart.create(this.model.toJSON());
                         this.el.classList.add('added');
                     }
                 }
             });
-            cartView = new Micado.Views.Cart({
+            cartView = Micado.Views.Cart.extend({
                 collection: Micado.Cart,
                 template: '#cart-template',
                 childView: Micado.Views.Item,
@@ -85,7 +88,6 @@ window.Micado = {
                     templateHelpers: {actionName: 'Remove'},
                     onAction: function (event) {
                         Micado.Cart.destroy(this.model);
-                        itemsView.el.classList.toggle('added', Micado.Cart.contains(this.model));
                     }
                 }
             });

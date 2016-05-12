@@ -1,5 +1,5 @@
 <script type="text/template" id="item-card-template">
-    <li class="item">
+    <li class="item <%- addedClass && addedClass() %>">
         <img class="item__image" alt="<%- name %>" src="<%- image %>" />
         <span class="item__name"><%- name %></span>
         <span class="item__price"><%- Micado.Currency %><%- price %></span>
