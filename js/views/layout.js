@@ -4,7 +4,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
     initialize: function (options) {
         this.regionViews = options.regionViews;
 
-        window.onhashchange = this.renderMain;
+        window.onhashchange = this.renderMain.bind(this);
         if (!location.hash) {
             location.hash = 'items';
         }
