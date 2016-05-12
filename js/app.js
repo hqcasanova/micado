@@ -85,6 +85,7 @@ window.Micado = {
 
             //Includes rudimentary routing implementation
             layoutView = new Micado.Views.Layout({
+                el: document.body,
                 regions: {
                     main: 'main'
                 },
