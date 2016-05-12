@@ -7,7 +7,7 @@
 <script type="text/template" id="item-card-template">
     <li class="item <%- addedClass() %>">
         <img class="item__image" alt="<%- name %>" src="<%- image %>" />
-        <%- discountPromo(discountCode) %>
+        <%= discountPromo(discountCode) %>
         <span class="item__name"><%- name %></span>
         <span class="item__price"><%- Micado.Currency %><%- price %></span>
         <a class="item__action" href="#"><%- actionName %></a>
