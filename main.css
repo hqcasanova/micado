@@ -10,6 +10,10 @@ ul {
     margin: 1em;
     border: 1px solid gray;
 }
+.item--added {
+    background: black;
+    color: white !important;
+}
 .item__image {
     width: 100%;
     height: auto;
@@ -18,10 +22,9 @@ ul {
     position: absolute;
     top: .5em;
     left: 0;
-    max-width: 10em;
     font-size: .9em;
-    background: #1e90ff;
-    color: black;
+    background: gray;
+    color: white;
     cursor: pointer;
 }
 .item__name {
@@ -35,8 +38,10 @@ ul {
     bottom: 0;
 }
 .item__action {
+    display: inline-block;
     background: black;
     color: white;
+    font-weight: bold;
 }
 .item__name, .item__price, .item__action, .item__offer {
     padding: .5em;

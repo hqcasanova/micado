@@ -83,7 +83,7 @@ window.Micado = {
                     },
                     onAction: function (event) {
                         Micado.Cart.create(this.model.toJSON());
-                        this.el.classList.add('added');
+                        this.el.classList.add('item--added');
                     }
                 }
             });
