@@ -9,7 +9,7 @@
         <h2 class="item__name"><%- name %></h2>
         <img class="item__image" alt="<%- name %>" src="<%- image %>" />
         <%= discountPromo(discountCode) %>
-        <span class="item__price"><%- Micado.Currency %><%- price %></span>
+        <span class="item__price">Price: <%- Micado.Currency %><%- price %></span>
         <a class="item__action" href="javascript:void(0)"><%- actionName %></a>
         <span class="item__cart"><%- inCart() %> added</span> 
     </li>

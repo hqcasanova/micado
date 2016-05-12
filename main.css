@@ -5,15 +5,17 @@ ul, li, div {
 ul {
     list-style: none;
 }
+h2 {
+    font-weight: normal;
+}
 .item {
     position: relative;
     margin: 1em;
-    border: 1px solid #D3D3D3;
+    border: 1px solid gray;
 }
 .item--added {
     background: gray;
     color: white;
-    border-color: gray;
 }
 .item__image {
     width: 100%;
@@ -23,6 +25,9 @@ ul {
     position: absolute;
     top: .5em;
     left: 0;
+    background: gray;
+}
+.item_offer {
     background: gray;
 }
 .item__offer, .item__name {
