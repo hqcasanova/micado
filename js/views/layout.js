@@ -41,27 +41,29 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
            viewName = location.hash.substring(1);
         }
 
-        //Renders the error view if view not found in 'route-to-view' map
-        if (!this.regionViews[viewName]) {
-            viewName = 'error';   
-        }
-        viewToShow = this.regionViews[viewName];
+        if (viewName) {
 
-        //Retrieves first whatever collection the view has associated if it hasn't already
-        //The current view is not destroyed to take advantage of local state
-        if (viewToShow.collection) {
-            if (viewToShow.collection.isFetched) {
-                region.show(viewToShow, {preventDestroy: true});
-            } else {
-                viewToShow.collection.fetch().done(function () {
-                    region.show(viewToShow, {preventDestroy: true});
-                });
+            //Renders the error view if view not found in 'route-to-view' map
+            if (!this.regionViews[viewName]) {
+                viewName = 'error';   
             }
+            viewToShow = this.regionViews[viewName];
 
-        //No collection => just shows the view
-        } else {
-            region.show(viewToShow);
+            //Retrieves first whatever collection the view has associated if it hasn't already
+            //The current view is not destroyed to take advantage of local state
+            if (viewToShow.collection) {
+                if (viewToShow.collection.isFetched) {
+                    region.show(viewToShow, {preventDestroy: true});
+                } else {
+                    viewToShow.collection.fetch().done(function () {
+                        region.show(viewToShow, {preventDestroy: true});
+                    });
+                }
+
+            //No collection => just shows the view
+            } else {
+                region.show(viewToShow);
+            }
         }
-
     }
 });
