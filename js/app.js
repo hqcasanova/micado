@@ -102,11 +102,13 @@ window.Micado = {
                 }
             });
 
-            //Starts 'routing'
-            layoutView.start({
-                items: itemsView, 
-                cart: cartView  
-            });           
+            //Cart contents needed first thing so that items already in it are marked as added
+            Micado.Cart.fetch().done(function () {
+                layoutView.start({
+                    items: itemsView, 
+                    cart: cartView  
+                });
+            });          
         } 
 
         function cacheTemplates () {

@@ -1,6 +1,4 @@
 Micado.Models.Item = Backbone.Model.extend({
-    idAttribute: 'code',
-
     defaults: function () {
         return {
             name: '',
