@@ -11,6 +11,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
     },
 
     renderMain: function () {
-        this.main.show(this.regionViews[location.hash], {preventDestroy: true});
+        var viewToShow = this.regionViews[location.hash.substring(1)];
+        this.main.show(viewToShow, {preventDestroy: true});
     }
 });
