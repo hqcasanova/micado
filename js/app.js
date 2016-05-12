@@ -84,7 +84,7 @@ window.Micado = {
             };
 
             //Includes rudimentary routing implementation
-            layoutView = new Marionette.LayoutView({
+            layoutView = new Micado.Views.Layout({
                 regions: {
                     main: 'main'
                 },

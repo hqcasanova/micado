@@ -3,8 +3,8 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
     localStorage: new Backbone.LocalStorage('Cart'),            
 
     initialize: function (models, options) {
-        this.listenTo(this, 'add', this.checkPricing);
-        this.listenTo(this, 'remove', this.checkPricing);
+        this.listenTo(this, 'add', this.checkDiscount(''));
+        this.listenTo(this, 'remove', this.checkDiscount('Rev'));
     },
 
     total: function () {
@@ -13,34 +13,50 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
         }, 0);
     },
 
-    checkPricing: function (model) {
-        var pricing = model.get('pricing');
+    checkDiscount: function (suffix) {
+        return function (model) {
+            var discountCode = model.get('discountCode');
 
-        pricing && this[pricing].call(this);
+            discountCode && this[discountCode + suffix]();
+        }
     },
 
     //If an even number of 2for1 items exist, make last one added free  
     off1: function (model) {
-        var numItems2for1 = this.where({pricing: 'off1'}).length;
+        var numItems2for1 = this.where({discountCode: 'off1'}).length;
 
         if ((numItems2for1 > 1) && (numItems2for1 % 2 == 0)) {
             model.set('price', 0);
         }
     },
 
+    //Removal of 2for1 items doesn't have any effect on existing prices
+    off1Rev: function () {},
+
     //If 3 or more items are added with half-price-after-three pricing, update the price of
     //subsequent items to half that of the original 
     half3: function (model) {
-        var itemsHalf3 = this.where({pricing: 'half3'}).length;
+        var numItemsHalf3 = this.where({discountCode: 'half3'}).length;
+        var newPrice = model.get('price') / 2;
 
-        if (itemsHalf3.length > 3) {
-            model.set('price', model.get('price') / 2);
+        if (numItemsHalf3 > 3) {
+            model.set('price', newPrice);
         
-        //Calculates the half price to be applied later on
-        } else if (itemsHalf3.length == 3) {
-            itemsHalf3[0].set('price', model.get('price') / 2);
-            itemsHalf3[1].set('price', itemsHalf3[0].get('price'));
-            itemsHalf3[2].set('price', itemsHalf3[0].get('price'));
+        } else if (itemsHalf3 == 3) {
+            itemsHalf3.forEach(function (item) {
+                item.set('price', newPrice);
+            });
+        }
+    },
+
+    //Pricing only varies while removing half-price-after-three items if less than 3 left
+    half3Rev: function (model) {
+        var numItemsHalf3 = this.where({discountCode: 'half3'}).length;
+
+        if (numItemsHalf3 == 2) {
+            itemsHalf3.forEach(function (model) {
+                model.set('price', model.get('price') * 2);
+            });
         }
     }
 });
