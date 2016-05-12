@@ -22,7 +22,7 @@ ul {
     position: absolute;
     top: .5em;
     left: 0;
-    font-size: .9em;
+    padding: .2em;
     background: gray;
     color: white;
     cursor: pointer;
@@ -41,8 +41,7 @@ ul {
     display: inline-block;
     background: black;
     color: white;
-    font-weight: bold;
 }
-.item__name, .item__price, .item__action, .item__offer {
+.item__name, .item__price, .item__action {
     padding: .5em;
 }

@@ -17,6 +17,10 @@ Micado.Views.Item = Marionette.ItemView.extend({
         });
     },
 
+    onRender: function () {
+        this.setElement(this.el.innerHTML);
+    },
+
     onClick: function (event) {
         this.onAction(event);
     }
