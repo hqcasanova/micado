@@ -11,8 +11,8 @@ Micado.Views.Item = Marionette.ItemView.extend({
 
         //Normalises template helpers so that a single template can be used
         //for any types of item.
-        _.defaults(this.templateHelpers, {
-            addedClass: function () {}, 
+        _.defaults(this.options.templateHelpers, {
+            inCart: function () {}, 
             discountPromo: function () {}
         });
     },

@@ -8,39 +8,46 @@ ul {
 .item {
     position: relative;
     margin: 1em;
-    border: 1px solid gray;
+    border: 1px solid #D3D3D3;
 }
 .item--added {
     background: gray;
-    color: white !important;
+    color: white;
+    border-color: gray;
 }
 .item__image {
     width: 100%;
     height: auto;
 }
-.item__offer {
+.item__name {
     position: absolute;
     top: .5em;
     left: 0;
-    padding: .2em;
     background: gray;
-    color: white;
-    cursor: pointer;
 }
-.item__name {
+.item__offer, .item__name {
+    padding: .2em;
+    color: white;
+}
+.item__price {
     position: absolute;
     left: 0;
     bottom: 0;
 }
-.item__price {
+.item__cart {
+    display: none;
     position: absolute;
     right: 0;
     bottom: 0;
+}
+.item--added .item__cart {
+    display: inline;
 }
 .item__action {
     display: inline-block;
     background: black;
     color: white;
+    cursor: pointer;
 }
 .item__name, .item__price, .item__action {
     padding: .5em;

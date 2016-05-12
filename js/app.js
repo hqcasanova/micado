@@ -70,8 +70,8 @@ window.Micado = {
                 childViewContainer: '.list',
                 childViewOptions: {
                     templateHelpers: {
-                        addedClass: function () {
-                            return Micado.Cart.findWhere(this.code)
+                        inCart: function () {
+                            return Micado.Cart.where({code: this.code}).length
                         },
                         discountPromo: function () {
                             var templateId = '#' + this.discountCode + '-template';
