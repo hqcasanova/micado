@@ -11,6 +11,11 @@
     <ul class="list"></ul>
 </script>
 <script type="text/template" id="cart-template">
-    <h1>Total: <% Micado.Currency + ' ' + total() %></h1>
+    <h1>Cart</h1>
+    <p class="total">
+        Total: 
+        <span class="total__currency"><%- Micado.Currency %></span>
+        <span class="total__figure"><%- total %></span>
+    </p>
     <ul class="list"></ul>
 </script>

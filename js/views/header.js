@@ -35,6 +35,10 @@ Micado.Views.HeaderView = Marionette.View.extend({
         this.allPromises.always(function () {
             that.logoEl.classList.remove('logo--loading');
             that.allPromises = $.Deferred().resolve();                    
+        
+        //Redirects to 404-like view if any error encountered
+        }).fail(function () {
+            location.hash = 'error';
         });
     },
 

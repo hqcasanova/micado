@@ -15,6 +15,7 @@ window.Micado = {
     //Initialise app
     run: function (endpoints) {
         var backboneSync;
+        var layoutView;
         var headerView;
 
         Micado.Items = new Micado.Collections.Items([], {
@@ -24,6 +25,19 @@ window.Micado = {
 
         //All prices assumed to be in pound sterling
         Micado.Currency = '£';
+
+        //Caches critical templates like the error view
+        cacheTemplates();
+
+        //Includes rudimentary routing implementation
+        layoutView = new Micado.Views.Layout({
+            el: document.body,
+            regions: {
+                main: 'main'
+            },
+            defaultViewName: 'items',
+            errorTemplate: '#error-template'
+        });   
 
         headerView = new Micado.Views.HeaderView({
             collection: Micado.Cart,
@@ -40,24 +54,18 @@ window.Micado = {
             return synced;
         };
 
-        //Caches all templates and shows item list
         function build (templatesHTML) {
-            var layoutView;
-            var views;
 
+            //Caches external templates
             document.body.insertAdjacentHTML('beforeend', templatesHTML);
-            scripts = Array.prototype.slice.call(document.getElementsByTagName('script'));
-            scripts.forEach(function (scriptEl) {
-                if (scriptEl.id) {
-                    Marionette.TemplateCache.get('#' + scriptEl.id);
-                }
-            });
+            cacheTemplates();
 
-            views = {
+            //Defines app views and starts 'routing'
+            _.extend(layoutView.regionViews, {
                 items: new Marionette.CompositeView({
                     collection: Micado.Items,
                     template: '#items-template',
-                    childView: Micado.Views.ItemCard,
+                    childView: Micado.Views.Item,
                     childViewContainer: '.list',
                     childViewOptions: {
                         templateHelpers: {actionName: 'Add to cart'},
@@ -68,10 +76,10 @@ window.Micado = {
                     }
                 }), 
 
-                cart: new Marionette.CompositeView({
+                cart: new Micado.Views.Cart({
                     collection: Micado.Cart,
                     template: '#cart-template',
-                    childView: Micado.Views.ItemCard,
+                    childView: Micado.Views.Item,
                     childViewContainer: '.list',
                     childViewOptions: {
                         templateHelpers: {actionName: 'Remove from cart'},
@@ -80,17 +88,20 @@ window.Micado = {
                             this.el.classList.toggle('added', Micado.Cart.contains(model));
                         }
                     }
-                }), 
-            };
-
-            //Includes rudimentary routing implementation
-            layoutView = new Micado.Views.Layout({
-                el: document.body,
-                regions: {
-                    main: 'main'
-                },
-                regionViews: views
-            });               
+                }) 
+            });
+            layoutView.start();           
         } 
+
+        function cacheTemplates () {
+            var scripts;
+
+            scripts = Array.prototype.slice.call(document.getElementsByTagName('script'));
+            scripts.forEach(function (scriptEl) {
+                if (scriptEl.id) {
+                    Marionette.TemplateCache.get('#' + scriptEl.id);
+                }
+            });
+        }
     }
 }

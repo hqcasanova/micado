@@ -1,13 +1,14 @@
 Micado.Collections.Cart = Micado.Collections.Entities.extend({
-    model: Micado.Models.Item,  
-    localStorage: new Backbone.LocalStorage('Cart'),            
+    model: Micado.Models.Item,                          
+    localStorage: new Backbone.LocalStorage('Cart'),    //cart will be persisted in browser's localStorage
 
+    //Updates prices according to the newly added/removed item's discount policy
     initialize: function (models, options) {
         this.listenTo(this, 'add', this.checkDiscount(''));
         this.listenTo(this, 'remove', this.checkDiscount('Rev'));
     },
 
-    total: function () {
+    getTotal: function () {
         return this.reduce(function (memo, item) { 
             return memo + item.get('price'); 
         }, 0);

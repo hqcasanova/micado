@@ -6,22 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Micado - Your online supermarket</title>
     <style>
-        html, body, div, header, h1 {
+        html, body, div, header, main, footer, h1, p {
             margin: 0;
             padding: 0;
         }
+        h1 {
+            font-weight: normal;
+        }
         body {
+            line-height: 1.5em;
             font-family: "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, sans-serif; 
             font-size: 100%;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
         }
         .header {
-            margin: .5em;
+            position: absolute;
+            top: 0;
+            padding: .5em;
+            width: 100%;
             border-bottom: 1px solid black;
         }
         .header h1 {
-            font-weight: normal;
             font-family: "Bodoni MT", Didot, "Didot LT STD", "Book Antiqua", Garamond, "Times New Roman", serif;
         }
         .brand {
@@ -95,7 +101,8 @@
             </a>
         </nav>
     </header>
-    <main>
+    <main class="content">
+        <h1>Loading...</h1>
     </main>
     <footer></footer>    
     
@@ -112,8 +119,15 @@
     <script src="js/collections/items.js"></script>
     <script src="js/collections/cart.js"></script>
     <script src="js/views/header.js"></script>
-    <script src="js/views/itemCard.js"></script>
     <script src="js/views/layout.js"></script>
+    <script src="js/views/item.js"></script>
+    <script src="js/views/cart.js"></script>
+
+    <!-- Critical templates -->
+    <script type="text/template" id="error-template">
+        <h1>Something&apos;s wrong</h1>
+        <p>Perhaps review your connection settings and try again</p>
+    </script>
 
     <!-- Initialisation -->
     <script type="application/javascript">

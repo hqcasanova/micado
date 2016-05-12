@@ -1,4 +1,5 @@
-Micado.Views.ItemCard = Marionette.ItemView.extend({
+Micado.Views.Item = Marionette.ItemView.extend({
+    template: '#item-card-template',
     actionHandler: null,
 
     events: {
