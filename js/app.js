@@ -74,8 +74,9 @@ window.Micado = {
                             return Micado.Cart.contains(this)
                         },
                         discountPromo: function () {
+                            var templateId = '#' + this.discountCode + '-template';
                             if (this.discountCode) {
-                                return Marionette.TemplateCache.get('#' + this.discountCode + '-template')
+                                return Marionette.TemplateCache.get(templateId)(this)
                             }
                         },
                         actionName: 'Add'
