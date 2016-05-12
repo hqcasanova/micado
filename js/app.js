@@ -71,7 +71,7 @@ window.Micado = {
                 childViewOptions: {
                     templateHelpers: {
                         addedClass: function () {
-                            return Micado.Cart.contains(this)
+                            return Micado.Cart.findWhere(this.code)
                         },
                         discountPromo: function () {
                             var templateId = '#' + this.discountCode + '-template';
