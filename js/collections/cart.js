@@ -18,7 +18,7 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
         return function (model) {
             var discountCode = model.get('discountCode');
 
-            discountCode && this[discountCode + suffix]();
+            discountCode && this[discountCode + suffix](model);
         }
     },
 

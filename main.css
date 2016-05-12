@@ -6,6 +6,7 @@ ul {
     list-style: none;
 }
 .item {
+    position: relative;
     margin: 1em;
     border: 1px solid gray;
 }
@@ -20,8 +21,13 @@ ul {
     float: right;
 }
 .item__action {
+    position: absolute;
+    top: .5em;
+    left: .5em;
     background: black;
     color: white;
-    padding: .5em;
     cursor: pointer;
+}
+.item__name, .item__price, .item__action {
+    padding: .5em;
 }
