@@ -45,7 +45,7 @@ Micado.Views.HeaderView = Marionette.View.extend({
     updateCounter: function (collection) {
         var count = collection.length;
 
-        this.cartEl.toggle('cart--empty', count);
+        this.cartEl.classlist.toggle('cart--empty', count);
         this.counterEl.textContent = count;
     }
 });
