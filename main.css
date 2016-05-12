@@ -14,20 +14,30 @@ ul {
     width: 100%;
     height: auto;
 }
-.item__name {
-    float: left;
-}
-.item__price {
-    float: right;
-}
-.item__action {
+.item__offer {
     position: absolute;
     top: .5em;
-    left: .5em;
-    background: black;
-    color: white;
+    left: 0;
+    max-width: 10em;
+    font-size: .9em;
+    background: #1e90ff;
+    color: black;
     cursor: pointer;
 }
-.item__name, .item__price, .item__action {
+.item__name {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+.item__price {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.item__action {
+    background: black;
+    color: white;
+}
+.item__name, .item__price, .item__action, .item__offer {
     padding: .5em;
 }

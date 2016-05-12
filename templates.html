@@ -1,6 +1,13 @@
+<script type="text/template" id="off1-template">
+    <p class="item__offer off1">Buy one, get one free</p>
+</script>
+<script type="text/template" id="reduced3-template">
+    <p class="item__offer reduced3">Buy 3 or more and pay <%- Micado.Currency %><%- discountPrice %> for each</p>
+</script>
 <script type="text/template" id="item-card-template">
-    <li class="item <%- addedClass && addedClass() %>">
+    <li class="item <%- addedClass() %>">
         <img class="item__image" alt="<%- name %>" src="<%- image %>" />
+        <%- discountPromo(discountCode) %>
         <span class="item__name"><%- name %></span>
         <span class="item__price"><%- Micado.Currency %><%- price %></span>
         <a class="item__action" href="#"><%- actionName %></a>
@@ -8,7 +15,7 @@
 </script>
 <script type="text/template" id="items-template">
     <h1>Products</h1>
-    <ul class="list"></ul>
+    <ul class="list items"></ul>
 </script>
 <script type="text/template" id="cart-template">
     <h1>Cart</h1>
@@ -16,5 +23,5 @@
         Total: 
         <span class="total__currency"><%- Micado.Currency %></span><span class="total__figure"><%- total %></span>
     </p>
-    <ul class="list"></ul>
+    <ul class="list cart"></ul>
 </script>

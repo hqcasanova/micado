@@ -34,11 +34,11 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
     //Removal of 2for1 items doesn't have any effect on existing prices
     off1Rev: function () {},
 
-    //If 3 or more items are added with half-price-after-three pricing, update the price of
-    //subsequent items to half that of the original 
-    half3: function (model) {
+    //If 3 or more items are added with reduced pricing, update the price of
+    //all items to  that of the original 
+    reduced3: function (model) {
         var numItemsHalf3 = this.where({discountCode: 'half3'}).length;
-        var newPrice = model.get('price') / 2;
+        var newPrice = model.get('discountPrice');
 
         if (numItemsHalf3 > 3) {
             model.set('price', newPrice);
@@ -50,8 +50,8 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
         }
     },
 
-    //Pricing only varies while removing half-price-after-three items if less than 3 left
-    half3Rev: function (model) {
+    //Pricing only varies while removing reduced-priced items if less than 3 left
+    reduced3Rev: function (model) {
         var numItemsHalf3 = this.where({discountCode: 'half3'}).length;
 
         if (numItemsHalf3 == 2) {

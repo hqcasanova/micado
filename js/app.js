@@ -70,7 +70,12 @@ window.Micado = {
                 childViewContainer: '.list',
                 childViewOptions: {
                     templateHelpers: {
-                        addedClass: function () {Micado.Cart.contains(this.model)},
+                        addedClass: function () {
+                            return Micado.Cart.contains(this)
+                        },
+                        discountPromo: function () {
+                            return Marionette.TemplateCache.get('#' + this.discountCode + '-template')
+                        },
                         actionName: 'Add'
                     },
                     onAction: function (event) {
@@ -85,7 +90,9 @@ window.Micado = {
                 childView: Micado.Views.Item,
                 childViewContainer: '.list',
                 childViewOptions: {
-                    templateHelpers: {actionName: 'Remove'},
+                    templateHelpers: {
+                        actionName: 'Remove'
+                    },
                     onAction: function (event) {
                         Micado.Cart.destroy(this.model);
                     }
