@@ -78,10 +78,26 @@
                 -webkit-transform: perspective(7.5em) rotateX(-180deg) rotateY(-179.9deg);
             }
         }
-        .navigation {
+        .nav {
             float: right;
         }
-        .cart--empty .cart__counter {
+        .nav__button {
+            display: inline-block;
+            line-height: 5em;
+            width: 5em;
+            height: 5em;
+            text-align: center;
+            border: 2px solid black;
+            -webkit-border-radius: 50%;
+            -moz-border-radius: 50%;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .nav__button--active {
+            color: white;
+            background: black;
+        }
+        .nav__cart--empty .nav__cart__counter {
             display: none;
         }
         .content {
@@ -113,11 +129,10 @@
         <h1 class="brand">
             Micado
         </h1>
-        <nav class="navigation">
-            <a class="items" href="#items">shop</a>
-            <a class="cart cart--empty" href="#cart">
-                <span class="cart__counter"></span>
-                items
+        <nav class="nav">
+            <a title="shop" class="nav__button nav__items" href="#items">shop</a>
+            <a title="cart" class="nav__button nav__cart nav__cart--empty" href="#cart">
+                <span class="nav__cart__counter"></span>
             </a>
         </nav>
     </header>
