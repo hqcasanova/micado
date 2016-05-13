@@ -83,10 +83,12 @@ window.Micado = {
                     onAction: function (event) {
                         var that = this.el; 
                         
-                        return Micado.Cart.create(this.model.toJSON()).done(function () {
-                            that.el.querySelector('.item__cart__number').textContent =
-                                that.options.templateHelpers.inCart.call(that.model.attributes);
-                            that.el.classList.add('item--added');
+                        return Micado.Cart.create(this.model.toJSON(), {
+                            success: function () {
+                                that.el.querySelector('.item__cart__number').textContent =
+                                    that.options.templateHelpers.inCart.call(that.model.attributes);
+                                that.el.classList.add('item--added');
+                            }
                         });
                         
                     }
