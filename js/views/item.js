@@ -32,6 +32,7 @@ Micado.Views.Item = Marionette.ItemView.extend({
     },
 
     onClick: function (event) {
+        event.currentTarget.disabled = true;
         this.onAction(event);
     }
 });

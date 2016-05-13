@@ -8,7 +8,7 @@
     <li class="item <% if (!isCartItem() && inCart()) { %> item--added <% } %>">
         <h2 class="item__name"><%- name %></h2>
         <img class="item__image" alt="<%- name %>" src="<%- image %>" />
-        <%= !isCartItem() && discountPromo(discountCode) %>
+        <%= if (!isCartItem()) { discountPromo(discountCode) } %>
         <span class="item__price">Price: <%- humanPrice() %></span>
         <a class="item__action" href="javascript:void(0)"><%- actionName %></a>
         <span class="item__cart">

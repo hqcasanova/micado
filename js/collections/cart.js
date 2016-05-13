@@ -5,7 +5,7 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
     //Updates prices according to the newly added/removed item's discount policy
     initialize: function (models, options) {
         this.listenTo(this, 'add', this.checkDiscount(''));
-        this.listenTo(this, 'remove', this.checkDiscount('Rev'));
+        this.listenTo(this, 'destroy', this.checkDiscount('Rev'));
     },
 
     getTotal: function () {
