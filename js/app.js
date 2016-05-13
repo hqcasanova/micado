@@ -81,10 +81,14 @@ window.Micado = {
                         actionName: 'Add'
                     },
                     onAction: function (event) {
-                        Micado.Cart.create(this.model.toJSON());
-                        this.el.classList.add('item--added');
-                        this.el.querySelector('.item__cart__number').textContent =
-                            this.options.templateHelpers.inCart.call(this.model.attributes);
+                        var that = this.el; 
+                        
+                        return Micado.Cart.create(this.model.toJSON()).done(function () {
+                            that.el.querySelector('.item__cart__number').textContent =
+                                that.options.templateHelpers.inCart.call(that.model.attributes);
+                            that.el.classList.add('item--added');
+                        });
+                        
                     }
                 }
             });
@@ -99,7 +103,7 @@ window.Micado = {
                     },
                     onAction: function (event) {
                         this.el.classList.add('item--removing');
-                        this.model.destroy({wait: true});
+                        return this.model.destroy({wait: true});
                     }
                 }
             });

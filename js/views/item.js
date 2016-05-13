@@ -27,12 +27,16 @@ Micado.Views.Item = Marionette.ItemView.extend({
         });
     },
 
+    //Gets rid of Marionette's wrapping div
     onRender: function () {
         this.setElement(this.el.innerHTML);
     },
 
+    //Disables the button during the action
     onClick: function (event) {
         event.currentTarget.disabled = true;
-        this.onAction(event);
+        this.onAction(event).always({
+            event.currentTarget.disabled = false;
+        });
     }
 });
