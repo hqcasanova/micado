@@ -5,7 +5,7 @@ Micado.Views.HeaderView = Marionette.View.extend({
     //Changes the cart counter every time the cart is modified.
     collectionEvents: {         
         'update': 'updateCounter'
-    }
+    },
 
     initialize: function (options) {
         
