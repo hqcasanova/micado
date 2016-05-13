@@ -22,7 +22,7 @@ Micado.Views.Item = Marionette.ItemView.extend({
 
             //Allows reuse of item template on shop view for cart items
             isCartItem: function () {
-                return typeof this.inCart !== 'undefined'
+                return typeof this.inCart === 'undefined'
             }
         });
     },
