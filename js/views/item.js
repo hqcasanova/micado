@@ -29,13 +29,12 @@ Micado.Views.Item = Marionette.ItemView.extend({
                 return typeof this.inCart === 'undefined'
             }
         });
-
-        this.priceValueEl = this.el.querySelector('.item__price__value');
     },
 
     //Gets rid of Marionette's wrapping div
     onRender: function () {
         this.setElement(this.el.innerHTML);
+        this.priceValueEl = this.el.querySelector('.item__price');
     },
 
     //Disables the button during the action
