@@ -5,14 +5,14 @@
     <p class="item__offer reduced3">Buy 3 or more and pay <%- Micado.Currency %><%- discountPrice %> for each</p>
 </script>
 <script type="text/template" id="item-card-template">
-    <li class="item <% if (!isCartItem && inCart()) { %> item--added <% } %>">
+    <li class="item <% if (!isCartItem() && inCart()) { %> item--added <% } %>">
         <h2 class="item__name"><%- name %></h2>
         <img class="item__image" alt="<%- name %>" src="<%- image %>" />
-        <%= !isCartItem && discountPromo(discountCode) %>
+        <%= !isCartItem() && discountPromo(discountCode) %>
         <span class="item__price">Price: <%- price() %></span>
         <a class="item__action" href="javascript:void(0)"><%- actionName %></a>
         <span class="item__cart">
-            <span class="item__cart__number"><%- !isCartItem && inCart() %></span> 
+            <span class="item__cart__number"><%- !isCartItem() && inCart() %></span> 
             added
         </span> 
     </li>
