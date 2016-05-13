@@ -46,9 +46,6 @@ h2 {
     right: 0;
     bottom: 0;
 }
-.item--added .item__cart {
-    display: inline;
-}
 .item__action {
     display: inline-block;
     background: black;
@@ -57,4 +54,10 @@ h2 {
 }
 .item__name, .item__price, .item__action, .item__cart {
     padding: .5em;
+}
+.item--added .item__cart {
+    display: inline;
+}
+.item--removing {
+    opacity: .4;
 }

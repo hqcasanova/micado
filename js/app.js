@@ -98,7 +98,10 @@ window.Micado = {
                         actionName: 'Remove'
                     },
                     onAction: function (event) {
+                        event.currentTarget.disabled = true;
+                        this.el.classList.add('item--removing');
                         Micado.Cart.remove(this.model);
+                        this.model.destroy({wait: true});
                     }
                 }
             });
