@@ -81,7 +81,7 @@ window.Micado = {
                         actionName: 'Add'
                     },
                     onAction: function (event) {
-                        var that = this.el; 
+                        var that = this; 
                         
                         return Micado.Cart.create(this.model.toJSON(), {
                             success: function () {
