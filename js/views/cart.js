@@ -16,6 +16,6 @@ Micado.Views.Cart = Marionette.CompositeView.extend({
     },
 
     updateTotal: function () {
-        this.totalEl.textContent = this.templateHelpers().total();
+        this.totalEl.textContent = this.templateHelpers().total;
     }
 });
