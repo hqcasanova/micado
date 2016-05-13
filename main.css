@@ -25,6 +25,7 @@ h2 {
     position: absolute;
     top: .5em;
     left: 0;
+    color: white;
     background: gray;
 }
 .item__offer {
@@ -33,7 +34,6 @@ h2 {
 }
 .item__offer, .item__name {
     padding: .2em;
-    color: white;
 }
 .item__price {
     position: absolute;
