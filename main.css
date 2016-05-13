@@ -28,7 +28,7 @@ h2 {
     background: gray;
 }
 .item__offer {
-    background: gray;
+    background: #EEBC1D;
 }
 .item__offer, .item__name {
     padding: .2em;

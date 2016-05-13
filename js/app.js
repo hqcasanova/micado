@@ -83,9 +83,8 @@ window.Micado = {
                     onAction: function (event) {
                         Micado.Cart.create(this.model.toJSON());
                         this.el.classList.add('item--added');
-                        this.el.querySelector('.item__cart__number').textContent(
-                            this.options.templateHelpers.inCart.call(this.model.attributes)
-                        );
+                        this.el.querySelector('.item__cart__number').textContent =
+                            this.options.templateHelpers.inCart.call(this.model.attributes);
                     }
                 }
             });
@@ -99,7 +98,7 @@ window.Micado = {
                         actionName: 'Remove'
                     },
                     onAction: function (event) {
-                        this.collection.remove(this.model);
+                        Micado.Cart.remove(this.model);
                     }
                 }
             });
