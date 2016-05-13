@@ -44,7 +44,7 @@ Micado.Views.Item = Marionette.ItemView.extend({
         this.onAction(event).always(function () {
             event.currentTarget.disabled = false;
         });
-    }
+    },
 
     updatePrice: function () {
         this.priceValueEl.textContent = this.options.templateHelpers.humanPrice.call(this.model.attributes);
