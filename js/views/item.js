@@ -11,8 +11,8 @@ Micado.Views.Item = Marionette.ItemView.extend({
 
         _.defaults(this.options.templateHelpers, {
             
-            //Outputs 'free' when price is 0. 
-            price: function () {
+            //Outputs 'free' when price is 0 and includes currency 
+            humanPrice: function () {
                 if (this.price) {
                     return Micado.Currency + this.price;
                 } else {

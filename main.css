@@ -54,6 +54,6 @@ h2 {
     color: white;
     cursor: pointer;
 }
-.item__name, .item__price, .item__action {
+.item__name, .item__price, .item__action, .item__cart {
     padding: .5em;
 }
