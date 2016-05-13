@@ -1,8 +1,8 @@
 <script type="text/template" id="off1-template">
-    <p class="item__offer off1">Buy one, get one free</p>
+    <p class="item__offer">Buy one, get one free</p>
 </script>
 <script type="text/template" id="reduced3-template">
-    <p class="item__offer reduced3">Buy 3 or more and pay <%- Micado.Currency %><%- discountPrice %> for each</p>
+    <p class="item__offer">Buy 3 or more and pay <%- Micado.Currency %><%- discountPrice %> for each</p>
 </script>
 <script type="text/template" id="item-card-template">
     <li class="item <% if (!isCartItem() && inCart()) { %> item--added <% } %>">
@@ -25,7 +25,8 @@
     <h1>Cart</h1>
     <p class="total">
         Total: 
-        <span class="total__currency"><%- Micado.Currency %></span><span class="total__figure"><%- total %></span>
+        <span class="total__currency"><%- Micado.Currency %></span><!--
+        --><span class="total__figure"><%- total %></span>
     </p>
     <ul class="list cart"></ul>
 </script>

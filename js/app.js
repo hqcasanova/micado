@@ -84,7 +84,7 @@ window.Micado = {
                         Micado.Cart.create(this.model.toJSON());
                         this.el.classList.add('item--added');
                         this.el.querySelector('.item__cart__number').textContent(
-                            this.templateHelpers.inCart.call(this.model.attributes)
+                            this.options.templateHelpers.inCart.call(this.model.attributes)
                         );
                     }
                 }
