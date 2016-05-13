@@ -11,7 +11,10 @@
         <% if (!isCartItem()) { %>
             <%= discountPromo(discountCode) %>
         <% } %>
-        <span class="item__price">Price: <%- humanPrice() %></span>
+        <span class="item__price">
+            Price: 
+            <span class="item__price__value"><%- humanPrice() %></span>
+        </span>
         <a class="item__action" href="javascript:void(0)"><%- actionName %></a>
         <span class="item__cart">
             <span class="item__cart__number"><%- !isCartItem() && inCart() %></span> 
@@ -27,7 +30,7 @@
     <h1>Cart</h1>
     <p class="total">
         Total: 
-        <span class="total__currency"><%- Micado.Currency %></span><!--
+        <%- Micado.Currency %><!--
         --><span class="total__figure"><%- total %></span>
     </p>
     <ul class="list cart"></ul>

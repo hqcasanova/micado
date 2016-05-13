@@ -6,6 +6,10 @@ Micado.Views.Item = Marionette.ItemView.extend({
         'click .item__action' : 'onClick'
     },
 
+    modelEvents: {
+        'change:price' : 'updatePrice'
+    }
+
     initialize: function (options) {
         this.onAction = options.onAction.bind(this);
 
@@ -25,6 +29,8 @@ Micado.Views.Item = Marionette.ItemView.extend({
                 return typeof this.inCart === 'undefined'
             }
         });
+
+        this.priceValueEl = this.el.querySelector('.item__price__value');
     },
 
     //Gets rid of Marionette's wrapping div
@@ -38,5 +44,9 @@ Micado.Views.Item = Marionette.ItemView.extend({
         this.onAction(event).always(function () {
             event.currentTarget.disabled = false;
         });
+    }
+
+    updatePrice: function () {
+        this.priceValueEl.textContent = this.options.templateHelpers.humanPrice.call(this.model.attributes);
     }
 });
