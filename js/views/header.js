@@ -2,6 +2,10 @@ Micado.Views.HeaderView = Marionette.View.extend({
     collection: null,           //cart
     allPromises: null,          //queue of promises
 
+    events: {
+        'click .nav__button' : 'setActive'
+    },
+
     //Changes the cart counter every time the cart is modified.
     collectionEvents: {         
         'update': 'updateCounter'
@@ -11,8 +15,8 @@ Micado.Views.HeaderView = Marionette.View.extend({
         
         //Assumes the header's markup is critical and, therefore, already in place
         this.logoEl = this.el.querySelector('.logo');
-        this.cartEl = this.el.querySelector('.cart');
-        this.counterEl = this.el.querySelector('.cart__counter');
+        this.cartEl = this.el.querySelector('.nav__cart');
+        this.counterEl = this.el.querySelector('.nav__cart__counter');
 
         //Sets up promise queue
         if (options.initPromises) {
@@ -44,10 +48,15 @@ Micado.Views.HeaderView = Marionette.View.extend({
         });
     },
 
+    setActive: function (event) {
+        this.el.querySelector('.nav__button--active').classList.remove('.nav__button--active');
+        event.currentTarget.classList.add('.nav__button--active');
+    },
+
     updateCounter: function (collection) {
         var count = collection.length;
 
-        this.cartEl.classList.toggle('cart--empty', !count);
+        this.cartEl.classList.toggle('nav__cart--empty', !count);
         this.counterEl.textContent = count;
     }
 });
