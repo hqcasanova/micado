@@ -8,7 +8,7 @@ Micado.Views.Item = Marionette.ItemView.extend({
 
     modelEvents: {
         'change:price' : 'updatePrice'
-    }
+    },
 
     initialize: function (options) {
         this.onAction = options.onAction.bind(this);
