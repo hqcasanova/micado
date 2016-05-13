@@ -8,7 +8,7 @@ Micado.Views.Cart = Marionette.CompositeView.extend({
     },
 
     collectionEvents: {
-        'update': 'updateTotal' 
+        'pricing:update': 'updateTotal' 
     },
 
     onRender: function () {

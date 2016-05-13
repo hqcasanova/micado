@@ -19,6 +19,7 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
             var discountCode = model.get('discountCode');
 
             discountCode && this[discountCode + suffix](model);
+            this.trigger('pricing:update');     //other views can now request and display the total 
         }
     },
 
