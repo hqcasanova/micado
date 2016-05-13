@@ -35,7 +35,7 @@ Micado.Views.Item = Marionette.ItemView.extend({
     //Disables the button during the action
     onClick: function (event) {
         event.currentTarget.disabled = true;
-        this.onAction(event).always({
+        this.onAction(event).always(function () {
             event.currentTarget.disabled = false;
         });
     }
