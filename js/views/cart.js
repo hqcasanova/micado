@@ -7,9 +7,9 @@ Micado.Views.Cart = Marionette.CompositeView.extend({
         }
     },
 
-    initialize: function () {
-        this.listenTo(this.collection, 'update', this.updateTotal);
-    },
+    collectionEvents: {
+        'update': 'updateTotal' 
+    }
 
     onRender: function () {
         this.totalEl = this.el.querySelector('.total__figure');

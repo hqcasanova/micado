@@ -27,7 +27,7 @@ h2 {
     left: 0;
     background: gray;
 }
-.item_offer {
+.item__offer {
     background: gray;
 }
 .item__offer, .item__name {

@@ -1,6 +1,11 @@
 Micado.Views.HeaderView = Marionette.View.extend({
-    collection: null,         //cart
-    allPromises: null,        //queue of promises
+    collection: null,           //cart
+    allPromises: null,          //queue of promises
+
+    //Changes the cart counter every time the cart is modified.
+    collectionEvents: {         
+        'update': 'updateCounter'
+    }
 
     initialize: function (options) {
         
@@ -16,9 +21,6 @@ Micado.Views.HeaderView = Marionette.View.extend({
         } else {
             this.allPromises = $.Deferred().resolve();
         }
-
-        //Changes the cart counter every time the cart is modified.
-        this.listenTo(this.collection, 'update', this.updateCounter);
     },
 
     showFeedback: function (promise) {

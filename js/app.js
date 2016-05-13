@@ -71,12 +71,11 @@ window.Micado = {
                 childViewOptions: {
                     templateHelpers: {
                         inCart: function () {
-                            return Micado.Cart.where({code: this.code}).length
+                            return Micado.Cart.where({code: this.code}).length;
                         },
                         discountPromo: function () {
-                            var templateId = '#' + this.discountCode + '-template';
                             if (this.discountCode) {
-                                return Marionette.TemplateCache.get(templateId)(this)
+                                return Mn.TemplateCache.get('#' + this.discountCode + '-template')(this);
                             }
                         },
                         actionName: 'Add'
@@ -84,6 +83,9 @@ window.Micado = {
                     onAction: function (event) {
                         Micado.Cart.create(this.model.toJSON());
                         this.el.classList.add('item--added');
+                        this.el.querySelector('.item__cart__number').textContent(
+                            this.templateHelpers.inCart.call(this.model.attributes);
+                        );
                     }
                 }
             });
@@ -97,7 +99,7 @@ window.Micado = {
                         actionName: 'Remove'
                     },
                     onAction: function (event) {
-                        Micado.Cart.destroy(this.model);
+                        this.collection.remove(this.model);
                     }
                 }
             });
@@ -117,7 +119,7 @@ window.Micado = {
             scripts = Array.prototype.slice.call(document.getElementsByTagName('script'));
             scripts.forEach(function (scriptEl) {
                 if (scriptEl.id) {
-                    Marionette.TemplateCache.get('#' + scriptEl.id);
+                    Mn.TemplateCache.get('#' + scriptEl.id);
                 }
             });
         }

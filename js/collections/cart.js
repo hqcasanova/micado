@@ -37,26 +37,30 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
     //If 3 or more items are added with reduced pricing, update the price of
     //all items to  that of the original 
     reduced3: function (model) {
-        var numItemsReduced = this.where({discountCode: 'half3'}).length;
+        var itemsReduced = this.where({discountCode: 'reduced3'});
+        var numItemsReduced = itemsReduced.length;
         var newPrice = model.get('discountPrice');
+
+        //Backs original price up
+        model.set('origPrice', model.get('price'));
 
         if (numItemsReduced > 3) {
             model.set('price', newPrice);
         
         } else if (numItemsReduced == 3) {
-            numItemsReduced.forEach(function (item) {
+            itemsReduced.forEach(function (item) {
                 item.set('price', newPrice);
             });
         }
     },
 
-    //Pricing only varies while removing reduced-priced items if less than 3 left
+    //Pricing varies while removing reduced-priced items only if less than 3 left
     reduced3Rev: function (model) {
-        var numItemsReduced = this.where({discountCode: 'half3'}).length;
+        var itemsReduced = this.where({discountCode: 'reduced3'});
 
-        if (numItemsReduced == 2) {
-            itemsHalf3.forEach(function (model) {
-                model.set('price', model.get('price') * 2);
+        if (itemsReduced.length == 2) {
+            itemsReduced.forEach(function (item) {
+                item.set('price', item.get('origPrice'));
             });
         }
     }
