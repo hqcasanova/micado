@@ -81,16 +81,18 @@ window.Micado = {
                         actionName: 'Add'
                     },
                     onAction: function (event) {
+                        var deferred = $.Deferred()
                         var that = this; 
                         
-                        return Micado.Cart.create(this.model.toJSON(), {
+                        Micado.Cart.create(this.model.toJSON(), {
                             success: function () {
+                                deferred.resolve();
                                 that.el.querySelector('.item__cart__number').textContent =
                                     that.options.templateHelpers.inCart.call(that.model.attributes);
                                 that.el.classList.add('item--added');
                             }
                         });
-                        
+                        return deferred;
                     }
                 }
             });
