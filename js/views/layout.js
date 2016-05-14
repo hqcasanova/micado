@@ -76,7 +76,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
             //Hide any previous content until all resources loaded    
             } else {
                 viewToShow.collection.fetch().done(function () {
-                    regionEl.classList.add(this.hideClass);
+                    this.regionEl.classList.add(this.hideClass);
                     region.show(viewToShow);
                 });
             }
