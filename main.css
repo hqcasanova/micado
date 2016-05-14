@@ -8,6 +8,12 @@ ul {
 h2 {
     font-weight: normal;
 }
+.content {
+    transition: opacity 2s;
+}
+.content--hide {
+    opacity: 0;
+}
 .item {
     position: relative;
     margin: 1em;

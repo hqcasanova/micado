@@ -1,12 +1,14 @@
 Micado.Views.Layout = Marionette.LayoutView.extend({
     regionViews: null,      //views per route to be rendered inside the layout's regions
+    hideClass: null,        //name of the class used to hide region
 
     initialize: function (options) {
+        this.regionViews = options.regionViews || {};
 
-        //regionViews and errorTemplate are mandatory options
+        //hideClass, defaultView and errorTemplate are mandatory options
         try {
-            this.regionViews = options.regionViews || {};
-            this.defaultViewName = options.defaultViewName;
+            this.hideClass = options.hideClass;
+            this.defaultView = options.defaultView;
             this.regionViews.error = Marionette.ItemView.extend({template: options.errorTemplate});
         } catch (e) {
             
@@ -20,20 +22,27 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
             }
         }
 
-        //Renders a view on hash change
+        //Renders whenever hash fragment changes and, once all rendered resources are loaded, reveals them
         window.onhashchange = this.renderRegion.bind(this, this.main);
+        window.onload = this.reveal;
+    },
+
+    //Reveals rendered view once all its resources have been downloaded
+    reveal: function () {
+        this.main.classList.remove(this.hideClass);
     },
 
     //Renders first view according to existing hash or lack of it
     start: function (routes) {
         _.extend(this.regionViews, routes);
         if (!location.hash) {           //default 'route'
-            location.hash = this.defaultViewName;
+            location.hash = this.defaultView;
         } else {                        //'route' already provided
             this.renderRegion(this.main);
         }
     },
 
+    //Renders a user-provided view inside a given region
     renderRegion: function (region, viewName) {
         var viewToShow;
 
@@ -54,6 +63,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
                 region.show(viewToShow);
             } else {
                 viewToShow.collection.fetch().done(function () {
+                    region.classList.add(this.hideClass);   //Hide any previous content until all resources loaded
                     region.show(viewToShow);
                 });
             }

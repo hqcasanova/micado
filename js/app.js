@@ -35,7 +35,8 @@ window.Micado = {
             regions: {
                 main: 'main'
             },
-            defaultViewName: 'items',
+            hideClass: 'content--hide',
+            defaultView: 'items',
             errorTemplate: '#error-template'
         });   
 
