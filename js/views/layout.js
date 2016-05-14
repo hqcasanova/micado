@@ -8,7 +8,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
         //A 'main' region must have been provided.
         //Also, hideClass, defaultView and errorTemplate are mandatory options
         try {
-            this.start(this.main);
+            this.start = this.start(this.main);
             this.hideClass = options.hideClass;
             this.defaultView = options.defaultView;
             this.regionViews.error = Marionette.ItemView.extend({template: options.errorTemplate});
