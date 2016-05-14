@@ -1,21 +1,17 @@
 Micado.Views.Layout = Marionette.LayoutView.extend({
     regionViews: null,      //views per route to be rendered inside the layout's regions
-    hideClass: null,        //name of the class used to hide region
-    regionEl: null,         //DOM element for rendering region
 
     initialize: function (options) {
         this.regionViews = options.regionViews || {};
 
         //A 'main' region must have been provided.
-        //Also, hideClass, defaultView and errorTemplate are mandatory options
+        //Also, defaultView and errorTemplate are mandatory options
         try {
-            this.hideClass = options.hideClass;
             this.defaultView = options.defaultView;
             this.regionViews.error = Marionette.ItemView.extend({template: options.errorTemplate});
 
-            //Sets rendering region and caches its DOM element
+            //Sets rendering region
             this.start = this.start(this.main);
-            this.regionEl = this.el.querySelector(this.main.el);
 
             //Renders whenever hash fragment changes
             window.onhashchange = this.renderRegion.bind(this, this.main);
@@ -67,13 +63,10 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
             if (!viewToShow.collection || viewToShow.collection.isFetched) {
                 region.show(viewToShow);
             
-            //Retrieves first whatever collection the view has associated if it hasn't already
-            //Hide any previous content until all resources loaded    
+            //Retrieves first whatever collection the view has associated if it hasn't already   
             } else {
-                this.regionEl.classList.add(this.hideClass);
                 viewToShow.collection.fetch().done(function () {
                     region.show(viewToShow);
-                    that.regionEl.classList.remove(that.hideClass);
                 });
             }
         }

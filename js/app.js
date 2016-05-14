@@ -35,7 +35,6 @@ window.Micado = {
             regions: {
                 main: 'main'
             },
-            hideClass: 'content--hide',
             defaultView: 'items',
             errorTemplate: '#error-template'
         });   
@@ -101,14 +100,24 @@ window.Micado = {
                 collection: Micado.Cart,
                 template: '#cart-template',
                 childView: Micado.Views.Item,
-                childViewContainer: '.list'
+                childViewContainer: '.list',
+                childViewOptions: {
+                    templateHelpers: {
+                        actionName: 'Remove'
+                    },
+                    onAction: function (event) {
+                        this.el.classList.add('item--removing');
+                        return this.model.destroy({wait: true});
+                    }
+                }
             });
 
             //Cart contents needed first thing so that items already in it are marked as added
-            Micado.Cart.fetch();
-            layoutView.start({
-                items: itemsView, 
-                cart: cartView  
+            Micado.Cart.fetch().done(function () {
+                layoutView.start({
+                    items: itemsView, 
+                    cart: cartView  
+                });
             });          
         } 
 
