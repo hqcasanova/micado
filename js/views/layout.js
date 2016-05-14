@@ -17,10 +17,9 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
             this.start = this.start(this.main);
             this.regionEl = this.el.querySelector(this.main.el);
 
-            //Renders whenever hash fragment changes and, once all rendered resources are loaded, reveals them
+            //Renders whenever hash fragment changes
             window.onhashchange = this.renderRegion.bind(this, this.main);
-            window.onload = this.reveal.bind(this, this.main);
-
+            
         //Shows error or throws exception    
         } catch (e) {
             
@@ -33,11 +32,6 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
                 throw e;
             }
         }
-    },
-
-    //Reveals rendered view once all its resources have been downloaded
-    reveal: function (region) {
-        this.regionEl.classList.remove(this.hideClass);
     },
 
     //Renders first view according to existing hash or lack of it
@@ -76,9 +70,10 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
             //Retrieves first whatever collection the view has associated if it hasn't already
             //Hide any previous content until all resources loaded    
             } else {
+                this.regionEl.classList.add(this.hideClass);
                 viewToShow.collection.fetch().done(function () {
-                    that.regionEl.classList.add(that.hideClass);
                     region.show(viewToShow);
+                    that.regionEl.classList.remove(that.hideClass);
                 });
             }
         }
