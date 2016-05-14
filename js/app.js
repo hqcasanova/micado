@@ -101,16 +101,7 @@ window.Micado = {
                 collection: Micado.Cart,
                 template: '#cart-template',
                 childView: Micado.Views.Item,
-                childViewContainer: '.list',
-                childViewOptions: {
-                    templateHelpers: {
-                        actionName: 'Remove'
-                    },
-                    onAction: function (event) {
-                        this.el.classList.add('item--removing');
-                        return this.model.destroy({wait: true});
-                    }
-                }
+                childViewContainer: '.list'
             });
 
             //Cart contents needed first thing so that items already in it are marked as added
