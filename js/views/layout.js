@@ -31,7 +31,9 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
 
     //Reveals rendered view once all its resources have been downloaded
     reveal: function (region) {
-        region.classList.remove(this.hideClass);
+        if (region.hasView()) {
+            region.el.classList.remove(this.hideClass);
+        }
     },
 
     //Renders first view according to existing hash or lack of it
