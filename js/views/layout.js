@@ -1,6 +1,7 @@
 Micado.Views.Layout = Marionette.LayoutView.extend({
     regionViews: null,      //views per route to be rendered inside the layout's regions
     hideClass: null,        //name of the class used to hide region
+    regionEl: null,         //DOM element for rendering region
 
     initialize: function (options) {
         this.regionViews = options.regionViews || {};
@@ -8,10 +9,19 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
         //A 'main' region must have been provided.
         //Also, hideClass, defaultView and errorTemplate are mandatory options
         try {
-            this.start = this.start(this.main);
             this.hideClass = options.hideClass;
             this.defaultView = options.defaultView;
             this.regionViews.error = Marionette.ItemView.extend({template: options.errorTemplate});
+
+            //Sets rendering region and caches its DOM element
+            this.start = this.start(this.main);
+            this.regionEl = this.el.querySelector(this.main.el);
+
+            //Renders whenever hash fragment changes and, once all rendered resources are loaded, reveals them
+            window.onhashchange = this.renderRegion.bind(this, this.main);
+            window.onload = this.reveal.bind(this, this.main);
+
+        //Shows error or throws exception    
         } catch (e) {
             
             //At least the error template is available => shows it
@@ -23,17 +33,11 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
                 throw e;
             }
         }
-
-        //Renders whenever hash fragment changes and, once all rendered resources are loaded, reveals them
-        window.onhashchange = this.renderRegion.bind(this, this.main);
-        window.onload = this.reveal.bind(this, this.main);
     },
 
     //Reveals rendered view once all its resources have been downloaded
     reveal: function (region) {
-        if (region.hasView()) {
-            region.el.classList.remove(this.hideClass);
-        }
+        this.regionEl.classList.remove(this.hideClass);
     },
 
     //Renders first view according to existing hash or lack of it
@@ -64,12 +68,15 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
             }
             viewToShow = new this.regionViews[viewName]();
 
-            //Retrieves first whatever collection the view has associated if it hasn't already
+            //Shows the view right away if no collection needs to be retrieved
             if (!viewToShow.collection || viewToShow.collection.isFetched) {
                 region.show(viewToShow);
+            
+            //Retrieves first whatever collection the view has associated if it hasn't already
+            //Hide any previous content until all resources loaded    
             } else {
                 viewToShow.collection.fetch().done(function () {
-                    region.el.classList.add(this.hideClass);   //Hide any previous content until all resources loaded
+                    regionEl.classList.add(this.hideClass);
                     region.show(viewToShow);
                 });
             }
