@@ -5,8 +5,10 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
     initialize: function (options) {
         this.regionViews = options.regionViews || {};
 
-        //hideClass, defaultView and errorTemplate are mandatory options
+        //A 'main' region must have been provided.
+        //Also, hideClass, defaultView and errorTemplate are mandatory options
         try {
+            this.start(this.main);
             this.hideClass = options.hideClass;
             this.defaultView = options.defaultView;
             this.regionViews.error = Marionette.ItemView.extend({template: options.errorTemplate});
@@ -24,21 +26,23 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
 
         //Renders whenever hash fragment changes and, once all rendered resources are loaded, reveals them
         window.onhashchange = this.renderRegion.bind(this, this.main);
-        window.onload = this.reveal;
+        window.onload = this.reveal.bind(this, this.main);
     },
 
     //Reveals rendered view once all its resources have been downloaded
-    reveal: function () {
-        this.main.classList.remove(this.hideClass);
+    reveal: function (region) {
+        region.classList.remove(this.hideClass);
     },
 
     //Renders first view according to existing hash or lack of it
-    start: function (routes) {
-        _.extend(this.regionViews, routes);
-        if (!location.hash) {           //default 'route'
-            location.hash = this.defaultView;
-        } else {                        //'route' already provided
-            this.renderRegion(this.main);
+    start: function (region) {
+        return function (routes) {
+            _.extend(this.regionViews, routes);
+            if (!location.hash) {           //default 'route'
+                location.hash = this.defaultView;
+            } else {                        //'route' already provided
+                this.renderRegion(region);
+            }
         }
     },
 
