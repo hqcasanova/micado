@@ -55,6 +55,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
     //Renders a user-provided view inside a given region
     renderRegion: function (region, viewName) {
         var viewToShow;
+        var that = this;
 
         if (typeof viewName !== 'string') {
            viewName = location.hash.substring(1);
@@ -76,7 +77,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
             //Hide any previous content until all resources loaded    
             } else {
                 viewToShow.collection.fetch().done(function () {
-                    this.regionEl.classList.add(this.hideClass);
+                    that.regionEl.classList.add(this.hideClass);
                     region.show(viewToShow);
                 });
             }
