@@ -23,6 +23,10 @@
         a {
             text-decoration: none;
             color: black;
+            outline: 0;
+        }
+        a:hover {
+            text-decoration: underline;
         }
         .header {
             position: fixed;
@@ -96,6 +100,7 @@
             -moz-border-radius: 50%;
             border-radius: 50%;
             cursor: pointer;
+            transition: background-color 1s;
         }
         .nav__button--active {
             color: white;
@@ -103,9 +108,6 @@
         }
         .nav__cart--empty .nav__cart__counter {
             visibility: none;
-        }
-        .nav__cart--empty .nav__cart_counter:before {
-            content: 'cart';
         }
         .content {
             margin-top: 4em;
@@ -139,7 +141,8 @@
         <nav class="nav">
             <a title="shop" class="nav__button nav__items nav__button--active" href="#items">shop</a>
             <a title="cart" class="nav__button nav__cart nav__cart--empty" href="#cart">
-                <span class="nav__cart__counter">cart</span>
+                cart
+                <span class="nav__cart__counter"></span>
             </a>
         </nav>
     </header>
