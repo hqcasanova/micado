@@ -86,6 +86,9 @@ ul {
 }
 
 /* Cart items */
+.cart .item {
+    overflow: hidden;
+}
 .cart .item__name {
     float: left;
     font-size: 1em;
