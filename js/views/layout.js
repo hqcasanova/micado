@@ -72,9 +72,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
             });
         }
 
-        //Updates app's status if no error
-        if (route != 'error') {
-            this.statusView.setActive(route);
-        }
+        //Updates app's status, ideally in some form of visual feedback indicating the active route
+        this.statusView.setActive(route);
     }
 });

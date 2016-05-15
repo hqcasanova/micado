@@ -47,11 +47,15 @@ Micado.Views.HeaderView = Marionette.View.extend({
         });
     },
 
+    //Highlights the nav button corresponding to the current hash fragment
     setActive: function (route) {
+        var nextNavEl = this.el.querySelector('[href="#' + route + '"]');
+        
         this.liveActives.length && this.liveActives[0].classList.remove('nav__button--active');
-        this.el.querySelector('[href="#' + route + '"]').classList.add('nav__button--active');
+        nextNavEl && nextNavEl.classList.add('nav__button--active');
     },
 
+    //Shows the cart's current item count only if different from zero
     updateCounter: function (collection) {
         var count = collection.length;
 
