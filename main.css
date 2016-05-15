@@ -71,7 +71,11 @@ ul {
     left: 0;
     font-size: 1.3em;
 }
-.items .item__image {
+.items .item__frame {
+    height: 200px;
+    overflow: hidden;
+}
+.items .item__frame__image {
     width: 100%;
     height: auto;
 }
@@ -92,7 +96,7 @@ ul {
     float: left;
     font-size: 1em;
 }
-.cart .item__image {
+.cart .item__frame__image {
     float: left;
     width: auto;
     height: 2.5em;

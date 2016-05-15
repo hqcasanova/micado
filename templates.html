@@ -7,7 +7,9 @@
 <script type="text/template" id="item-card-template">
     <li class="item <% if (!isCartItem() && inCart()) { %> item--added <% } %>">
         <h2 class="item__name"><%- name %></h2>
-        <img class="item__image" alt="<%- name %>" src="<%- image %>" />
+        <div class="item__frame">
+            <img class="item__frame__image" alt="<%- name %>" src="<%- image %>" />
+        </div>
         <% if (!isCartItem()) { %>
             <%= discountPromo(discountCode) %>
         <% } %>
