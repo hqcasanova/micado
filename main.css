@@ -9,11 +9,11 @@ ul {
 
 /* Navigation */
 .nav__cart__counter {
+    top: .1em;
+    right: .1em;
     display: block;
     width: 2em;
     height: 2em;
-    top: .1em;
-    right: .1em;
     line-height: 2em;
     font-size: .6em;
     font-weight: bold;
@@ -55,10 +55,10 @@ ul {
     cursor: pointer;
 }
 .item__cart {
-    display: none;
     position: absolute;
     right: 0;
     bottom: 0;
+    display: none;
 }
 .item__name, .item__price, .item__action, .item__cart {
     padding: .5em;
@@ -125,6 +125,7 @@ ul {
 .cart .item__price {
     position: absolute;
     left: 0;
+    z-index: 50;
     display: inline-block;
     padding: 0;
     width: 100%;
