@@ -29,7 +29,7 @@ ul {
 /* View-agnostic items */
 .item {
     position: relative;
-    margin: 2%;
+    margin: 1em 2%;
     border: 1px solid #D3D3D3;
 }
 .item--added {
@@ -127,4 +127,10 @@ ul {
 }
 .item--removing {
     opacity: .4;
+}
+@media only screen and (max-width: 400px) {
+    .cart .item__price {
+        position: static;
+        display: inline;
+    }
 }
