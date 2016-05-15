@@ -31,6 +31,7 @@ ul {
     position: relative;
     margin: 1em 2%;
     border: 1px solid #D3D3D3;
+    transition: background-color 500ms;
 }
 .item--added {
     background: gray;
