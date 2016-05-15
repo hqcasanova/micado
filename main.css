@@ -94,12 +94,13 @@ ul {
     }
 }
 @media only screen and (min-width: 1020px) {
-    .items .item {width: 30%}
+    .items .item {width: 29%}
 } 
 
 /* Cart items */
 .cart {
     max-width: 550px;
+    margin: auto;
 }
 .cart .item {
     overflow: hidden;
