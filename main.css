@@ -65,9 +65,6 @@ ul {
 }
 
 /* Shop items */
-.items .item {
-    display: inline-block;
-}
 .items .item__name {
     position: absolute;
     top: .5em;
@@ -91,7 +88,10 @@ ul {
     display: inline;
 }
 @media only screen and (min-width: 650px) {
-    .items .item {width: 43%}
+    .items .item {
+        display: inline-block;
+        width: 43%;
+    }
 }
 @media only screen and (min-width: 1020px) {
     .items .item {width: 30%}
