@@ -116,6 +116,7 @@ ul {
 }
 .cart .item__price {
     position: absolute;
+    left: 0;
     display: inline-block;
     padding: 0;
     width: 100%;
@@ -129,6 +130,9 @@ ul {
     opacity: .4;
 }
 @media only screen and (max-width: 400px) {
+    .cart .item {
+        font-size: .9em;
+    }
     .cart .item__action {
         position: static;
         float: right;
