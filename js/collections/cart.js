@@ -1,6 +1,6 @@
 Micado.Collections.Cart = Micado.Collections.Entities.extend({
     model: Micado.Models.Item,                          
-    localStorage: new Backbone.LocalStorage('Cart'),    //cart will be persisted in browser's localStorage
+    localStorage: new Backbone.LocalStorage('Cart'),    //cart will be persisted in browser's local storage
 
     //Updates prices according to the newly added/removed item's discount policy
     initialize: function (models, options) {
@@ -35,26 +35,14 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
     //Makes sure all free items are paired with a priced one whenever possible
     off1Rev: function (model) {
         var attrs2for1 = {discountCode: 'off1', code: model.get('code')};
-        var items2for1 = this.where(attrs2for1);
-        var numItems2for1 = items2for1.length;
+        var numItems2for1 = this.where(attrs2for1).length;
         var freeItems;
-        var numFreeItems;
-        var balanceRatio;
 
-        //The collection may fall 'out of balance' when it contains 3 or more items
-        if (numItems2for1 > 2) {
-            freeItems = this.where(_.extend({}, attrs2for1, {price: 0}));
-            numFreeItems = freeItems.length;
-            balanceRatio = numFreeItems - numItems2for1 / 2;
-
-            //There are 2 free items more than the number of priced ones => restores price for last free item
-            if (balanceRatio == 1) {
-                freeItems.models[numFreeItems - 1].set('price', model.get('price'));
-
-            //There are 2 priced items more than free items => makes first priced item found free
-            } else if (balanceRatio == -1) {
-                items2for1.find(function (item) {return item.get('price') != 0}).set('price', 0);
-            }    
+        //The collection may fall 'out of balance' when the last item removed was paired with a free one
+        //and the latter was the one left. To bring it into balance, it restores the last free item's price.
+        if ((numItems2for1 % 2 != 0) && (model.get('price') != 0)) {
+            freeItems = this.where(_.extend(attrs2for1, {price: 0}));
+            freeItems.pop().set('price', model.get('price'));
         }
     },
 
