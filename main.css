@@ -109,8 +109,17 @@ ul {
     line-height: 2.5em;
 }
 .cart .item__action {
-    float: right;
+    position: absolute;
+    right: 0;
 }
 .item--removing {
     opacity: .4;
 }
+
+/* Responsive design */
+@media only screen and (min-width: 650px) {
+    li {width: 50%}
+}
+@media only screen and (min-width: 1020px) {
+    li {width: 33%}
+} 
