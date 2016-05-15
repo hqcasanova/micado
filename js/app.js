@@ -27,7 +27,13 @@ window.Micado = {
         Micado.Currency = '£';
 
         //Caches critical templates like the error view
-        cacheTemplates();
+        cacheTemplates();   
+
+        headerView = new Micado.Views.HeaderView({
+            collection: Micado.Cart,
+            el: '.header',
+            initPromises: [$.get(endpoints.templatesUrl, build)]    //feedback while retrieving templates
+        });
 
         //Includes rudimentary routing implementation
         layoutView = new Micado.Views.Layout({
@@ -36,13 +42,8 @@ window.Micado = {
                 main: 'main'
             },
             defaultView: 'items',
+            statusView: headerView,
             errorTemplate: '#error-template'
-        });   
-
-        headerView = new Micado.Views.HeaderView({
-            collection: Micado.Cart,
-            el: '.header',
-            initPromises: [$.get(endpoints.templatesUrl, build)]    //feedback while retrieving templates
         });
 
         //Displays transaction feedback for every Backbone request

@@ -1,5 +1,7 @@
 Micado.Views.Layout = Marionette.LayoutView.extend({
     regionViews: null,      //views per route to be rendered inside the layout's regions
+    defaultView: null,      //view to be shown for default 'route'
+    statusView: null,       //view in charge of showing current app status
 
     initialize: function (options) {
         this.regionViews = options.regionViews || {};
@@ -8,6 +10,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
         //Also, defaultView and errorTemplate are mandatory options
         try {
             this.defaultView = options.defaultView;
+            this.statusView = options.statusView;
             this.regionViews.error = Marionette.ItemView.extend({template: options.errorTemplate});
 
             //Sets rendering region
@@ -43,32 +46,34 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
     },
 
     //Renders a user-provided view inside a given region
-    renderRegion: function (region, viewName) {
+    renderRegion: function (region, route) {
         var viewToShow;
-        var that = this;
 
-        if (typeof viewName !== 'string') {
-           viewName = location.hash.substring(1);
+        //Takes the route from the location if none provided
+        if (typeof route !== 'string') {
+           route = location.hash.substring(1);
         }
 
-        if (viewName) {
+        //Renders the error view if no matches from the 'route-to-view' map
+        if (!this.regionViews[route]) {
+            route = 'error';   
+        }
+        viewToShow = new this.regionViews[route]();
 
-            //Renders the error view if no matches from the 'route-to-view' map
-            if (!this.regionViews[viewName]) {
-                viewName = 'error';   
-            }
-            viewToShow = new this.regionViews[viewName]();
-
-            //Shows the view right away if no collection needs to be retrieved
-            if (!viewToShow.collection || viewToShow.collection.isFetched) {
+        //Shows the view right away if no collection needs to be retrieved
+        if (!viewToShow.collection || viewToShow.collection.isFetched) {
+            region.show(viewToShow);
+        
+        //Retrieves first whatever collection the view has associated if it hasn't already   
+        } else {
+            viewToShow.collection.fetch().done(function () {
                 region.show(viewToShow);
-            
-            //Retrieves first whatever collection the view has associated if it hasn't already   
-            } else {
-                viewToShow.collection.fetch().done(function () {
-                    region.show(viewToShow);
-                });
-            }
+            });
+        }
+
+        //Updates app's status if no error
+        if (route != 'error') {
+            this.statusView.setActive(route);
         }
     }
 });
