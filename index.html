@@ -91,10 +91,10 @@
         }
         .nav__button {
             display: inline-block;
-            line-height: 3em;
             width: 3em;
             height: 3em;
             text-align: center;
+            line-height: 3em;
             border: 2px solid black;
             -webkit-border-radius: 50%;
             -moz-border-radius: 50%;
@@ -106,8 +106,8 @@
             color: white;
             background: black;
         }
-        .nav__cart--empty .nav__cart__counter {
-            visibility: none;
+        .nav__cart__counter--empty {
+            opacity: 0;
         }
         .content {
             margin-top: 4em;
@@ -140,10 +140,8 @@
         </h1>
         <nav class="nav">
             <a title="shop" class="nav__button nav__items nav__button--active" href="#items">shop</a>
-            <a title="cart" class="nav__button nav__cart nav__cart--empty" href="#cart">
-                cart
-                <span class="nav__cart__counter"></span>
-            </a>
+            <a title="cart" class="nav__button nav__cart" href="#cart">cart</a>
+            <span class="nav__cart__counter nav__cart__counter--empty">0</span>
         </nav>
     </header>
     <main class="content">

@@ -2,7 +2,6 @@ Micado.Views.HeaderView = Marionette.View.extend({
     collection: null,           //cart
     allPromises: null,          //queue of promises
     logoEl: null,               //DOM element for logo image
-    cartEl: null,               //DOM element for cart button in navigation group
     counterEl: null,            //DOM element for counter of cart items
     actives: null,              //live collection for active navigation buttons
 
@@ -19,7 +18,6 @@ Micado.Views.HeaderView = Marionette.View.extend({
         
         //Assumes the header's markup is critical and, therefore, already in place
         this.logoEl = this.el.querySelector('.logo');
-        this.cartEl = this.el.querySelector('.nav__cart');
         this.counterEl = this.el.querySelector('.nav__cart__counter');
         this.actives = this.el.getElementsByClassName('nav__button--active');
 
@@ -61,7 +59,7 @@ Micado.Views.HeaderView = Marionette.View.extend({
     updateCounter: function (collection) {
         var count = collection.length;
 
-        this.cartEl.classList.toggle('nav__cart--empty', !count);
+        this.counterEl.classList.toggle('nav__cart__counter--empty', !count);
         this.counterEl.textContent = count;
     }
 });

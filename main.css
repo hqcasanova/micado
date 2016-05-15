@@ -8,6 +8,23 @@ ul {
 h2 {
     font-weight: normal;
 }
+.nav__cart__counter {
+    display: block;
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    top: .1em;
+    right: .1em;
+    line-height: 2em;
+    font-size: .6em;
+    text-align: center;
+    color: white;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    background: gray;
+    transition: opacity 1s;
+}
 .item {
     position: relative;
     margin: 1em;
