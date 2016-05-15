@@ -37,11 +37,7 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
     start: function (region) {
         return function (routes) {
             _.extend(this.regionViews, routes);
-            if (!location.hash) {           //default 'route'
-                location.hash = this.defaultView;
-            } else {                        //'route' already provided
-                this.renderRegion(region);
-            }
+            this.renderRegion(region);
         }
     },
 
@@ -52,6 +48,11 @@ Micado.Views.Layout = Marionette.LayoutView.extend({
         //Takes the route from the location if none provided
         if (typeof route !== 'string') {
            route = location.hash.substring(1);
+        }
+
+        //Shows the default view when the route is blank (eg: empty hash)
+        if (!route) {
+            route = this.defaultView;    
         }
 
         //Renders the error view if no matches from the 'route-to-view' map
