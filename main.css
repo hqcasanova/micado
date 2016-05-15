@@ -23,7 +23,7 @@ ul {
     -moz-border-radius: 50%;
     border-radius: 50%;
     background: gray;
-    transition: opacity 1s;
+    transition: opacity 500ms;
 }
 
 /* View-agnostic items */
