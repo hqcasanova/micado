@@ -48,7 +48,7 @@ Micado.Views.HeaderView = Marionette.View.extend({
     },
 
     setActive: function (route) {
-        this.liveActives[0].classList.remove('nav__button--active');
+        this.liveActives && this.liveActives[0].classList.remove('nav__button--active');
         this.el.getElementsByClassName(route)[0].classList.add('nav__button--active');
     },
 
