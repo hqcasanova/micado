@@ -117,6 +117,7 @@ ul {
 .cart .item__price {
     position: absolute;
     display: inline-block;
+    padding: 0;
     width: 100%;
     line-height: 2.5em;
 }
@@ -128,8 +129,14 @@ ul {
     opacity: .4;
 }
 @media only screen and (max-width: 400px) {
-    .cart .item__price, .cart .item__action {
+    .cart .item__action {
         position: static;
         float: right;
+    }
+    .cart .item__price {
+        position: static;
+        display: inline-block;
+        float: right;
+        padding: 0 .5em;
     }
 }
