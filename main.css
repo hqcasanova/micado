@@ -129,9 +129,12 @@ ul {
 .item--removing {
     opacity: .4;
 }
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 500px) {
     .cart .item {
         font-size: .9em;
+    }
+    .cart .item__frame__image {
+        height: 2.67em;
     }
     .cart .item__action {
         position: static;
