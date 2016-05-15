@@ -29,7 +29,7 @@ ul {
 /* View-agnostic items */
 .item {
     position: relative;
-    margin: 1em;
+    margin: 2%;
     border: 1px solid #D3D3D3;
 }
 .item--added {
@@ -65,6 +65,9 @@ ul {
 }
 
 /* Shop items */
+.items .item {
+    display: inline-block;
+}
 .items .item__name {
     position: absolute;
     top: .5em;
@@ -87,8 +90,17 @@ ul {
 .item--added .item__cart {
     display: inline;
 }
+@media only screen and (min-width: 650px) {
+    .items .item {width: 43%}
+}
+@media only screen and (min-width: 1020px) {
+    .items .item {width: 30%}
+} 
 
 /* Cart items */
+.cart {
+    max-width: 550px;
+}
 .cart .item {
     overflow: hidden;
 }
@@ -115,11 +127,3 @@ ul {
 .item--removing {
     opacity: .4;
 }
-
-/* Responsive design */
-@media only screen and (min-width: 650px) {
-    li {width: 50%}
-}
-@media only screen and (min-width: 1020px) {
-    li {width: 33%}
-} 
