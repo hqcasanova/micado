@@ -1,4 +1,7 @@
 # Micado
+
+<img src="http://hqcasanova.github.io/micado/logo.png" width="50" height="50" align="left" hspace="10" vspace="1">
+
 Micado is a rudimentary e-commerce SPA  with flexible product discount policies. The focus is on the products, not the supermarket brand. Hence its binary colours and responsive, simple-looking interface. Under the hood, the app uses Backbone/Marionette and leverages the browser’s local storage to speed up access to the cart.
 
 # Features
