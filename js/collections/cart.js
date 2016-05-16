@@ -34,15 +34,21 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
 
     //Makes sure all free items are paired with a priced one whenever possible
     off1Rev: function (model) {
-        var attrs2for1 = {discountCode: 'off1', code: model.get('code')};
-        var numItems2for1 = this.where(attrs2for1).length;
-        var freeItems;
+        var items2for1 = this.where({discountCode: 'off1', code: model.get('code')});
+        var numItems2for1 = items2for1.length;
+        var subItems;       //subarray of items, either free or priced
 
         //The collection may fall 'out of balance' when the last item removed was paired with a free one
         //and the latter was the one left. To bring it into balance, it restores the last free item's price.
         if ((numItems2for1 % 2 != 0) && (model.get('price') != 0)) {
-            freeItems = this.where(_.extend(attrs2for1, {price: 0}));
-            freeItems.pop().set('price', model.get('price'));
+            subItems = _.filter(items2for1, function (item) {return item.get('price') == 0});
+            subItems.length && subItems.pop().set('price', model.get('price'));
+        
+        //If there's now an even number of items and the one removed was a free one, two consecutive removals
+        //of free items must have happened (one legal and the following illegal) => make one priced item free
+        } else if ((numItems2for1 % 2 == 0) && (model.get('price') == 0)) {
+            subItems = _.filter(items2for1, function (item) {return item.get('price') != 0});
+            subItems.length && subItems.pop().set('price', 0);
         }
     },
 

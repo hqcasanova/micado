@@ -79,7 +79,7 @@ window.Micado = {
                                 return Mn.TemplateCache.get('#' + this.discountCode + '-template')(this);
                             }
                         },
-                        actionName: 'Add'
+                        actionName: '+ Add'
                     },
                     onAction: function (event) {
                         var deferred = $.Deferred()
@@ -104,7 +104,7 @@ window.Micado = {
                 childViewContainer: '.list',
                 childViewOptions: {
                     templateHelpers: {
-                        actionName: 'Remove'
+                        actionName: '&#10005; Remove'
                     },
                     onAction: function (event) {
                         this.el.classList.add('item--removing');
