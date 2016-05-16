@@ -13,7 +13,7 @@
         <% if (!isCartItem()) { %>
             <%= discountPromo(discountCode) %>
         <% } %>
-        <a class="item__action" href="javascript:void(0)"><%- actionName %></a>
+        <a class="item__action" href="javascript:void(0)"><%= actionName %></a>
         <span class="item__price"><%- humanPrice() %></span>
         <span class="item__cart">
             <span class="item__cart__number"><%- !isCartItem() && inCart() %></span> 
