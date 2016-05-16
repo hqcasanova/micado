@@ -14,6 +14,12 @@ Micado.Collections.Cart = Micado.Collections.Entities.extend({
         }, 0);
     },
 
+    destroyAll: function () {
+        _.each(_.clone(this.models), function (model) {
+            model.destroy();
+        });
+    },
+
     checkDiscount: function (suffix) {
         return function (model) {
             var discountCode = model.get('discountCode');

@@ -20,7 +20,7 @@ Micado.Views.Cart = Marionette.CompositeView.extend({
     },
 
     removeAll: function () {
-        _.invoke(this.collection.models, 'destroy');
+        this.collection.destroyAll();
     },
 
     updateTotal: function () {
