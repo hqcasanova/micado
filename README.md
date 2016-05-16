@@ -10,18 +10,22 @@ Micado is a rudimentary e-commerce SPA  with flexible product discount policies.
 
 # Product Data structure
 Every item is represented by the following properties:
+
 - `name`: name of the product
 - `code`: code identifying the product
 - `image`: URL for the product image
 - `price`: price in the currency specified by the global constant `Micado.Currency`
 - `discountCode`: code identifying the pricing/discount policy
 - `discountPrice`: price of the product when the discount applies
+
 If the product is not on offer, the properties `discountCode` and `discountPrice` can be omitted
 
 # Pricing Architecture
 The `Micado.Collections.Cart` class contains the logic for the pricing policy, with two methods for each of the possible discount codes identifying the policies. The method invoked depends on the action being performed on the collection:
+
 - Adding a new item: the method has the same name as the policy’s code
 - Removing an item: the method’s name is similar to the above name with a  “Rev” suffix. 
+
 The difference is due to the fact that the logic to be applied when an new item is added to the cart can be non-symetrical with respect to the logic needed when it is removed.
 All in all, the programmer must make sure that, for a given policy code, two methods exist inside the Micado.Collections.Cart class: one named after said code and the other with a “Rev” suffix.
 When it comes to the HTML used for offer description, the template to be used is required to have an id of the form `<discountCode>-template`. That template will be used automatically for every product with that discount code.
