@@ -1,4 +1,4 @@
-# micado
+# Micado
 Micado is a rudimentary e-commerce SPA  with flexible product discount policies. The focus is on the products, not the supermarket brand. Hence its binary colours and responsive, simple-looking interface. Under the hood, the app uses Backbone/Marionette and leverages the browser’s local storage to speed up access to the cart.
 
 # Features
@@ -8,7 +8,7 @@ Micado is a rudimentary e-commerce SPA  with flexible product discount policies.
 - **Bandwidth-agnostic**: the critical rendering path has been optimised so that initial feedback is presented to the user as quickly as possible. Additionally, any requests performed within the app are indicated at the header level, never leaving the user wondering if something at all is going on. At a code level, promises are used wherever possible.
 - **API architecture**: thanks to Backbone, the codebase is independent of the underlying request verbs being used. By default, a RESTful API is assumed. Nevertheless, should Websockets need to be used instead, overwriting Backbone’s sync function should suffice. A similarly simple process is all it is needed to move the cart from local to server-side storage.
 
-# Product Data structure
+# Product Data Structure
 Every item is represented by the following properties:
 
 - `name`: name of the product
