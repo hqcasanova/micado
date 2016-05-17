@@ -31,15 +31,15 @@ The `Micado.Collections.Cart` class contains the logic for the pricing policy, w
 
 The difference is due to the fact that the logic to be applied when an new item is added to the cart can be non-symetrical with respect to the logic needed when it is removed.
 
-All in all, the programmer must make sure that, for a given policy code, two methods exist inside the Micado.Collections.Cart class: one named after said code and the other with a “Rev” suffix.
+All in all, the programmer must make sure that, for a given policy code, two methods exist inside the `Micado.Collections.Cart` class: one named after said code and the other with a “Rev” suffix.
 
 When it comes to the HTML used for offer description, the template to be used is required to have an id of the form `<discountCode>-template`. That template will be used automatically for every product with that discount code.
 
 # Roadmap
 - Take advantage of Marionette’s module system.
-- Replace the custom routing system with Backbone’s. The current one was an experiment to see if it was possible to keep view class definition outside the controller and, thus, keep references to collections at the outermost level of the codebase, thus simplifying debugging.
-- Extend the class hierarchy for items, adding child classes that differentiate cart and shop items. Use those classes to encapsulate the part of the class definitions occurring in app.js and used for the routed views. 
+- Replace the custom routing system with Backbone’s. The current one was an experiment to see if it was possible to keep view class definition outside the controller and, thus, keep references to collections at the outermost level of the codebase and simplifying debugging.
+- Extend the class hierarchy for items, adding child classes that differentiate cart and shop items. Use those classes to encapsulate the part of the class definitions occurring in app.js and used for the routed views. Potentially, simplify the item template.
 - Improve support for mobile stock browsers. Android stock browser is not respecting the top margin for the contents main section, leading to the loss of the titles. Chrome on Android is fine.
 - Add JSDoc documentation.
 - Add unit tests.
-
+- Whatever else I can't imagine right now.
