@@ -2,14 +2,14 @@
   {
     "name": "Fruit Tea",
     "code": "FR1",
-    "image": "http://www.paradisefruits.co.uk/fileadmin/user_upload/Tea.jpg",
+    "image": "https://c2.staticflickr.com/6/5069/5836263814_08d6fa782c_b.jpg",
     "price": 3.11,
     "discountCode": "off1" 
   },
   {
     "name": "Strawberries",
     "code": "SR1",
-    "image": "https://onceamonth4.files.wordpress.com/2012/06/strawberries1.jpg",
+    "image": "https://c2.staticflickr.com/8/7069/6867210719_1576053b21_b.jpg",
     "price": 5.00,
     "discountCode": "reduced3",
     "discountPrice": 4.50
@@ -17,7 +17,7 @@
   {
     "name": "Coffee",
     "code": "CF1",
-    "image": "https://www.deafcancoffee.com/images/portfolio/coffee.jpg",
+    "image": "https://c2.staticflickr.com/8/7542/15634097123_ee18c22c84_o.jpg",
     "price": 11.23
   }
 ]
